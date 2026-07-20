@@ -550,15 +550,13 @@ footer {
 .hero-banner{
     width:100%;
     max-width:1400px;
-    margin:50px auto 10px;
-    display:flex;
-    justify-content:center;
+    margin:25px auto 5px;
+    overflow:hidden;
 }
 
 .hero-banner img{
     width:100%;
-    max-width:1400px;
-    max-height:220px;      /* probeer 180, 200 of 220 px */
-    object-fit:contain;    /* volledige banner zichtbaar */
+    height:auto;
     display:block;
+    object-fit:contain;
 }
