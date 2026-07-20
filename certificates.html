@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificaten | Lorenzo Bombello</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .certificates-page {
+            padding: 120px 24px 60px;
+        }
+
+        .certificates-header {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+
+        .certificates-header h1 {
+            margin-bottom: 12px;
+        }
+
+        .certificates-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            opacity: 0.85;
+        }
+
+        .certificate-section {
+            max-width: 1200px;
+            margin: 0 auto 56px;
+        }
+
+        .certificate-section h2 {
+            margin-bottom: 24px;
+        }
+
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.65);
+        }
+
+        .certificate-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: contain;
+            background: #ffffff;
+            display: block;
+        }
+
+        .certificate-content {
+            padding: 20px;
+        }
+
+        .certificate-content h3 {
+            margin: 0 0 8px;
+        }
+
+        .certificate-content p {
+            margin: 0 0 18px;
+            opacity: 0.78;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .certificate-actions a {
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 600px) {
+            .certificates-page {
+                padding-top: 90px;
+            }
+
+            .certificate-card img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <a href="index.html" class="logo">Lorenzo Bombello</a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="certificates.html">Certificaten</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main class="certificates-page">
+
+    <div class="certificates-header">
+        <a href="index.html" class="button secondary back-link">← Terug naar home</a>
+
+        <p class="eyebrow">Portfolio</p>
+        <h1>Certificaten & diploma's</h1>
+
+        <p>
+            Een overzicht van mijn technische opleidingen, diploma's,
+            certificaten en behaalde kwalificaties.
+        </p>
+    </div>
+
+    <section class="certificate-section">
+        <h2>PLC & industriële automatisatie</h2>
+
+        <div class="certificate-grid">
+
+            <article class="certificate-card">
+                <a href="certificates/2026_Certificaat_Basis_PLC_en_OP_Hard_en_Software.jpg" target="_blank">
+                    <img
+                        src="certificates/2026_Certificaat_Basis_PLC_en_OP_Hard_en_Software.jpg"
+                        alt="Certificaat Basis PLC en OP hard- en software">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Basis PLC en OP</h3>
+                    <p>Hard- en software — Syntra West Kortrijk</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2026_Certificaat_Basis_PLC_en_OP_Hard_en_Software.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2026_Certificaat_Gestructureerd_Programmeren_PLC.jpg" target="_blank">
+                    <img
+                        src="certificates/2026_Certificaat_Gestructureerd_Programmeren_PLC.jpg"
+                        alt="Certificaat Gestructureerd Programmeren PLC">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Gestructureerd programmeren PLC</h3>
+                    <p>PLC-programmering — Module 2</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2026_Certificaat_Gestructureerd_Programmeren_PLC.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2026_Certificaat_Gestructureerd_Programmeren_OP.jpg" target="_blank">
+                    <img
+                        src="certificates/2026_Certificaat_Gestructureerd_Programmeren_OP.jpg"
+                        alt="Certificaat Gestructureerd Programmeren OP">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Gestructureerd programmeren OP</h3>
+                    <p>Praktijkgerichte eindopdracht — Module 2</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2026_Certificaat_Gestructureerd_Programmeren_OP.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="certificate-section">
+        <h2>Diploma's & professionele certificaten</h2>
+
+        <div class="certificate-grid">
+
+            <article class="certificate-card">
+                <a href="certificates/2025_Onderhoudstechnicus.jpeg" target="_blank">
+                    <img
+                        src="certificates/2025_Onderhoudstechnicus.jpeg"
+                        alt="Diploma Onderhoudstechnicus">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Diploma Onderhoudstechnicus</h3>
+                    <p>Centrum voor Avondonderwijs — 2025</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2025_Onderhoudstechnicus.jpeg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2025_Certificaat_Machine_Operator_Volvo_Cars.jpg" target="_blank">
+                    <img
+                        src="certificates/2025_Certificaat_Machine_Operator_Volvo_Cars.jpg"
+                        alt="Certificaat Machine Operator Volvo Cars">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Machine Operator</h3>
+                    <p>Volvo Cars Gent — interne certificering</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2025_Certificaat_Machine_Operator_Volvo_Cars.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2026_VCA_Basis.jpg" target="_blank">
+                    <img
+                        src="certificates/2026_VCA_Basis.jpg"
+                        alt="VCA Basis certificaat">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>VCA Basis</h3>
+                    <p>Veiligheid, gezondheid en milieu</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2026_VCA_Basis.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+
+                        <a class="button secondary"
+                           href="certificates/2026_VCA_Basis.pdf"
+                           download>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2025_Certificaat_ICT.jpg" target="_blank">
+                    <img
+                        src="certificates/2025_Certificaat_ICT.jpg"
+                        alt="ICT certificaat">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>ICT-certificaat</h3>
+                    <p>Digitale vaardigheden en portfolio</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2025_Certificaat_ICT.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="certificate-section">
+        <h2>Technische basisopleiding</h2>
+
+        <div class="certificate-grid">
+
+            <article class="certificate-card">
+                <a href="certificates/2007_Deelcertificaat_Basis_Elektriciteit_6919.jpg" target="_blank">
+                    <img
+                        src="certificates/2007_Deelcertificaat_Basis_Elektriciteit_6919.jpg"
+                        alt="Deelcertificaat Basis Elektriciteit">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Basis Elektriciteit</h3>
+                    <p>Deelcertificaat 6919 — CVO ISBO</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2007_Deelcertificaat_Basis_Elektriciteit_6919.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2007_Deelcertificaat_Basis_Metaal_6920.jpg" target="_blank">
+                    <img
+                        src="certificates/2007_Deelcertificaat_Basis_Metaal_6920.jpg"
+                        alt="Deelcertificaat Basis Metaal">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Basis Metaal</h3>
+                    <p>Deelcertificaat 6920 — CVO ISBO</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2007_Deelcertificaat_Basis_Metaal_6920.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_1.jpg" target="_blank">
+                    <img
+                        src="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_1.jpg"
+                        alt="Elektrische Opbouwinstallaties 1">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Elektrische Opbouwinstallaties 1</h3>
+                    <p>Technische basisopleiding — CVO ISBO</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_1.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_2.jpg" target="_blank">
+                    <img
+                        src="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_2.jpg"
+                        alt="Elektrische Opbouwinstallaties 2">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Elektrische Opbouwinstallaties 2</h3>
+                    <p>Technische basisopleiding — CVO ISBO</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_2.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="certificate-card">
+                <a href="certificates/2008_Certificaat_Hersteller_Witgoed_BSO03.jpg" target="_blank">
+                    <img
+                        src="certificates/2008_Certificaat_Hersteller_Witgoed_BSO03.jpg"
+                        alt="Certificaat Hersteller Witgoed">
+                </a>
+
+                <div class="certificate-content">
+                    <h3>Hersteller Witgoed BSO03</h3>
+                    <p>Technische beroepsopleiding — 480 lestijden</p>
+
+                    <div class="certificate-actions">
+                        <a class="button primary"
+                           href="certificates/2008_Certificaat_Hersteller_Witgoed_BSO03.jpg"
+                           target="_blank">
+                            Bekijken
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Lorenzo Bombello · Industriële automatisatie & technisch onderhoud</p>
+    </div>
+</footer>
+
+</body>
+</html>
