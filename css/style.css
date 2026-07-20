@@ -547,3 +547,14 @@ footer {
 
   .certificate-card img { height: 240px; }
 }
+.hero-banner{
+    width:100%;
+    overflow:hidden;
+    margin-top:70px;   /* ruimte onder de navigatie */
+}
+
+.hero-banner img{
+    width:100%;
+    display:block;
+    height:auto;
+}
