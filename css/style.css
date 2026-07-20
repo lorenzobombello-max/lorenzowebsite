@@ -316,4 +316,11 @@ footer {
     .section {
         padding: 62px 0;
     }
+}.profile-photo{
+    width:120px;
+    height:120px;
+    border-radius:20px;
+    object-fit:cover;
+    display:block;
+    margin-bottom:25px;
 }
