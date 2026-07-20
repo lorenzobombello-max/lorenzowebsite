@@ -1,427 +1,549 @@
+/* =========================================================
+   Lorenzo Bombello — technisch portfolio
+   Visuele richting: industriële / schakelpaneel-esthetiek.
+   Kleur = indicatielampen (amber = actief, groen = status-ok).
+   Typografie = IBM Plex, ontworpen voor technische documentatie.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
 :root {
-    --bg: #07111f;
-    --panel: #0d1b2d;
-    --panel-soft: #13243a;
-    --text: #f4f7fb;
-    --muted: #a8b7ca;
-    --accent: #31c3ff;
-    --accent-2: #75e6c6;
-    --border: rgba(255, 255, 255, 0.10);
-    --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  /* paneelkleuren */
+  --bg: #0f1418;
+  --panel: #161d24;
+  --panel-2: #1c242c;
+  --steel: #2b343c;
+  --line: rgba(238, 241, 238, 0.10);
+  --line-strong: rgba(238, 241, 238, 0.20);
+
+  /* tekst */
+  --paper: #eef1ee;
+  --muted: #9aa7ac;
+  --muted-2: #6f7b80;
+
+  /* indicatielampen */
+  --amber: #f5a623;
+  --amber-dim: #c9860f;
+  --green: #33d17a;
+
+  --font-display: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    margin: 0;
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background:
-        radial-gradient(circle at 85% 10%, rgba(49, 195, 255, 0.16), transparent 28%),
-        radial-gradient(circle at 10% 30%, rgba(117, 230, 198, 0.10), transparent 25%),
-        var(--bg);
-    color: var(--text);
-    line-height: 1.6;
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--paper);
+  line-height: 1.6;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(238, 241, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 241, 238, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 88% 6%, rgba(245, 166, 35, 0.09), transparent 32%),
+    radial-gradient(circle at 8% 24%, rgba(51, 209, 122, 0.06), transparent 28%);
+  background-size: 42px 42px, 42px 42px, auto, auto;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; }
+
+::selection { background: var(--amber); color: #10151a; }
+
+.container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+/* focus zichtbaar houden voor toetsenbordgebruik */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
 }
 
-.container {
-    width: min(1120px, calc(100% - 40px));
-    margin: 0 auto;
-}
+/* -------------------- header / nav -------------------- */
 
 .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(14px);
-    background: rgba(7, 17, 31, 0.82);
-    border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(14px);
+  background: rgba(15, 20, 24, 0.86);
+  border-bottom: 1px solid var(--line);
 }
 
 .nav {
-    min-height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .brand {
-    font-weight: 800;
-    letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
 }
 
-.brand span {
-    color: var(--accent);
-}
+.brand span { color: var(--amber); }
 
 .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    color: var(--muted);
-    font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 26px;
+  color: var(--muted);
+  font-size: 0.94rem;
 }
+
+.nav-links a { padding: 4px 0; border-bottom: 1px solid transparent; }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
-    color: var(--text);
+.nav-links a:focus-visible { color: var(--paper); border-color: var(--amber); }
+
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero {
-    min-height: 78vh;
-    display: grid;
-    align-items: center;
-    padding: 92px 0 72px;
+.nav-toggle svg { width: 20px; height: 20px; }
+
+/* -------------------- eyebrow / "netwerk"-labels -------------------- */
+/* Verwijst naar de Network-nummering in TIA Portal ladderlogica:
+   elke sectie is een "netwerk" in het programma dat deze pagina is. */
+
+.network-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
 }
+
+.network-tag::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--amber-dim);
+}
+
+/* -------------------- hero -------------------- */
+
+.hero { padding: 78px 0 60px; }
 
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1.35fr 0.65fr;
-    gap: 54px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.eyebrow {
-    margin: 0 0 14px;
-    color: var(--accent-2);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    font-weight: 800;
-}
-
-h1,
-h2,
-h3,
-p {
-    margin-top: 0;
-}
+h1, h2, h3, p { margin-top: 0; }
 
 h1 {
-    margin-bottom: 18px;
-    max-width: 800px;
-    font-size: clamp(2.8rem, 7vw, 5.8rem);
-    line-height: 0.98;
-    letter-spacing: -0.045em;
+  margin-bottom: 20px;
+  max-width: 760px;
+  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
 h1 span {
-    display: block;
-    color: var(--accent);
+  display: block;
+  margin-top: 10px;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--amber);
+  letter-spacing: -0.005em;
 }
 
 .hero-text {
-    max-width: 720px;
-    color: var(--muted);
-    font-size: clamp(1.05rem, 2vw, 1.22rem);
+  max-width: 640px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
 }
 
 .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
 }
 
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 0 22px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    font-weight: 800;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  font-weight: 600;
+  font-size: 0.96rem;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
 
-.button.primary {
-    background: var(--accent);
-    color: #03111b;
-    border-color: transparent;
+.button.primary { background: var(--amber); color: #1a1204; border-color: transparent; }
+.button.primary:hover { transform: translateY(-2px); background: #ffb84a; }
+
+.button.secondary { background: rgba(238, 241, 238, 0.03); }
+.button.secondary:hover { transform: translateY(-2px); border-color: var(--amber); }
+
+.button.small { min-height: 38px; padding: 0 16px; font-size: 0.86rem; }
+
+/* -------------------- nameplate (kenplaat) -------------------- */
+/* Vormgegeven als het typeplaatje op industriële motoren en kasten:
+   vaste velden, klinknagels in de hoeken, monospace waarden. */
+
+.nameplate {
+  position: relative;
+  padding: 30px 28px 26px;
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(165deg, rgba(238, 241, 238, 0.05), rgba(238, 241, 238, 0) 45%),
+    linear-gradient(155deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow);
 }
 
-.button.secondary {
-    background: rgba(255, 255, 255, 0.03);
+.rivet {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(155deg, #3a444d, #10151a);
+  box-shadow: inset 0 1px 1px rgba(238, 241, 238, 0.25), 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.button:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
+.rivet.tl { top: 12px; left: 12px; }
+.rivet.tr { top: 12px; right: 12px; }
+.rivet.bl { bottom: 12px; left: 12px; }
+.rivet.br { bottom: 12px; right: 12px; }
+
+.nameplate-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed var(--line-strong);
 }
 
-.profile-card {
-    padding: 28px;
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    background: linear-gradient(160deg, rgba(19, 36, 58, 0.95), rgba(8, 20, 34, 0.92));
-    box-shadow: var(--shadow);
+.profile-photo {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--steel);
+  flex-shrink: 0;
 }
 
-.profile-mark {
-    width: 96px;
-    height: 96px;
-    display: grid;
-    place-items: center;
-    margin-bottom: 24px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #04101b;
-    font-size: 2rem;
-    font-weight: 900;
+.nameplate-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
 }
 
-.profile-list {
-    display: grid;
-    gap: 13px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: var(--muted);
+.nameplate-title strong {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--paper);
 }
 
-.profile-list strong {
-    color: var(--text);
+.nameplate-fields {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.section {
-    padding: 82px 0;
+.nameplate-fields li {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 0.92rem;
 }
 
-.section-header {
-    max-width: 720px;
-    margin-bottom: 34px;
+.nameplate-fields .label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
 }
+
+.nameplate-fields .value { color: var(--paper); }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.status-led {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  animation: pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(51, 209, 122, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(51, 209, 122, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-led { animation: none; }
+}
+
+/* -------------------- terminal-strip (signatuur-divider) -------------------- */
+/* Verwijst naar een rij schroefklemmen op een PLC-aansluitstrip. */
+
+.terminal-strip {
+  height: 14px;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--steel) 0,
+    var(--steel) 7px,
+    transparent 7px,
+    transparent 26px
+  );
+  background-position: center;
+  opacity: 0.55;
+}
+
+/* -------------------- generieke secties -------------------- */
+
+.section { padding: 68px 0; }
+
+.section-header { max-width: 680px; margin-bottom: 34px; }
 
 .section-header h2 {
-    margin-bottom: 10px;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
-.section-header p {
-    color: var(--muted);
-}
+.section-header p { color: var(--muted); }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .card {
-    padding: 26px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: rgba(13, 27, 45, 0.78);
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(22, 29, 36, 0.7);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.card h3 {
-    margin-bottom: 10px;
-}
+.card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
 
-.card p {
-    margin-bottom: 0;
-    color: var(--muted);
-}
+.card h3 { margin-bottom: 10px; font-size: 1.06rem; }
 
-.tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+.card p { margin-bottom: 0; color: var(--muted); }
+
+/* -------------------- expertise tags -------------------- */
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .tag {
-    padding: 9px 12px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.035);
-    color: var(--muted);
-    font-size: 0.92rem;
+  padding: 9px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
 }
 
-.contact-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 34px;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    background: linear-gradient(135deg, rgba(49, 195, 255, 0.12), rgba(117, 230, 198, 0.06));
+/* -------------------- cv-downloads -------------------- */
+
+.cv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
-.contact-box p {
-    margin-bottom: 0;
-    color: var(--muted);
+.cv-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(22, 29, 36, 0.7);
 }
 
-footer {
-    padding: 34px 0 46px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.9rem;
+.cv-card .lang {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
 }
 
-@media (max-width: 860px) {
-    .hero-grid,
-    .grid {
-        grid-template-columns: 1fr;
-    }
+.cv-card .name { font-weight: 600; }
 
-    .hero {
-        min-height: auto;
-    }
+/* -------------------- certificaten (overzichtspagina) -------------------- */
 
-    .profile-card {
-        max-width: 520px;
-    }
+.certificates-page { padding: 118px 0 60px; }
 
-    .contact-box {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+.certificates-header { max-width: 720px; margin: 0 auto 44px; text-align: center; }
+
+.certificates-header h1 { margin-bottom: 12px; }
+
+.certificates-header p { max-width: 640px; margin: 0 auto; color: var(--muted); }
+
+.back-link { display: inline-block; margin-bottom: 26px; }
+
+.certificate-section { margin-bottom: 54px; }
+
+.certificate-section h2 {
+  margin-bottom: 22px;
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
 }
 
-@media (max-width: 620px) {
-    .container {
-        width: min(100% - 28px, 1120px);
-    }
-
-    .nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 18px 0;
-    }
-
-    .nav-links {
-        gap: 14px;
-    }
-
-    .hero {
-        padding-top: 68px;
-    }
-
-    .section {
-        padding: 62px 0;
-    }
-.profile-photo{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    margin:0 auto 25px;
-}
-/* Diploma's en certificaten */
-
-.certificates-section {
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.certificates-section h2 {
-    margin-bottom: 15px;
-}
-
-.section-intro {
-    max-width: 650px;
-    margin: 0 auto 40px;
-}
-
-.certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
-    max-width: 1100px;
-    margin: 0 auto;
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
 }
 
 .certificate-card {
-    padding: 30px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(22, 29, 36, 0.7);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.certificate-card h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
+.certificate-card:hover { transform: translateY(-4px); border-color: var(--amber-dim); }
+
+.certificate-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  background: #ffffff;
+  display: block;
 }
 
-.certificate-card p {
-    margin-bottom: 25px;
-    line-height: 1.6;
+.certificate-content { padding: 20px; }
+
+.certificate-content h3 { margin-bottom: 6px; font-size: 1.02rem; }
+
+.certificate-content p { margin-bottom: 18px; color: var(--muted); font-size: 0.92rem; }
+
+.certificate-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* -------------------- contact -------------------- */
+
+.contact-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.10), rgba(51, 209, 122, 0.05));
 }
 
-.certificate-button {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    color: #ffffff;
-    background: #0067b1;
-    transition: transform 0.2s ease, background 0.2s ease;
+.contact-box p { margin-bottom: 0; color: var(--muted); }
+
+/* -------------------- footer -------------------- */
+
+footer {
+  padding: 30px 0 44px;
+  border-top: 1px solid var(--line);
+  color: var(--muted-2);
+  font-size: 0.88rem;
 }
 
-.certificate-button:hover {
-    background: #00528d;
-    transform: translateY(-2px);
+/* -------------------- responsief -------------------- */
+
+@media (max-width: 900px) {
+  .hero-grid, .grid, .cv-grid { grid-template-columns: 1fr; }
+  .nameplate { max-width: 480px; }
 }
 
-@media (max-width: 850px) {
-    .certificates-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.certificate-card{
-    background:#182331;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:15px;
-    padding:28px;
-    margin-bottom:40px;   /* extra ruimte tussen de kaarten */
+@media (max-width: 720px) {
+  .nav-links {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px 20px 20px;
+    background: rgba(15, 20, 24, 0.98);
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+
+  .nav-links a { width: 100%; padding: 10px 0; }
+
+  .nav-links.open { display: flex; }
+
+  .nav-toggle { display: inline-flex; }
+
+  .contact-box { flex-direction: column; align-items: flex-start; }
 }
 
-.certificate-card:hover{
-    transform:translateY(-4px);
-    border-color:#2f80ed;
-}
+@media (max-width: 560px) {
+  .container { width: min(100% - 28px, 1120px); }
 
-.certificate-card h3{
-    margin-bottom:15px;
-    color:white;
-    font-size:1.6rem;
-}
+  .section { padding: 52px 0; }
 
-.certificate-card p{
-    margin-bottom:40px;
-    color:#d7dde5;
-}
+  .hero { padding: 30px 0 44px; }
 
-.certificate-button{
-    display:inline-block;
-    background:#2f80ed;
-    color:white;
-    text-decoration:none;
-    padding:12px 24px;
-    border-radius:8px;
-    font-weight:bold;
-    margin-bottom:15px;   /* ruimte onder de knop */
-}
-}
+  .nameplate-fields li { grid-template-columns: 1fr; gap: 2px; }
 
-.certificate-button:hover{
-    background:#1b6fd6;
+  .certificate-card img { height: 240px; }
 }
