@@ -548,10 +548,12 @@ footer {
   .certificate-card img { height: 240px; }
 }
 .hero-banner{
-    width:275%;
-    height:145px;      /* probeer eerst 220px */
+    width:100%;
+    max-width:1280px;   /* banner niet breder dan 1280px */
+    height:300px;       /* vaste hoogte */
+    margin:70px auto 40px auto;
     overflow:hidden;
-    margin-top:35px;
+    border-radius:16px; /* optioneel, ziet er mooi uit */
 }
 
 .hero-banner img{
