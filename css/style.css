@@ -317,8 +317,8 @@ footer {
         padding: 62px 0;
     }
 }.profile-photo{
-    width:100px;
-    height:100px;
+    width:140px;
+    height:140px;
     border-radius:20px;
     object-fit:cover;
     display:block;
