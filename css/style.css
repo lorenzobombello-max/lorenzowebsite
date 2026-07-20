@@ -406,7 +406,7 @@ footer {
 }
 
 .certificate-card p{
-    margin-bottom:25px;
+    margin-bottom:40px;
     color:#d7dde5;
 }
 
@@ -418,7 +418,7 @@ footer {
     padding:12px 24px;
     border-radius:8px;
     font-weight:bold;
-    margin-bottom:25px;   /* ruimte onder de knop */
+    margin-bottom:15px;   /* ruimte onder de knop */
 }
 }
 
