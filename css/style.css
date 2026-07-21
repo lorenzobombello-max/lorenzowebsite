@@ -660,3 +660,159 @@ footer {
   .project-table th { width: 150px; }
   .video-embed-grid, .screenshot-grid { grid-template-columns: 1fr; }
 }
+/* ==================================================
+   PROJECT 1 - SCREENSHOT LAYOUT
+   Drie afbeeldingen links, lange afbeelding rechts
+================================================== */
+
+.project-gallery-intro {
+    max-width: 850px;
+    margin: 0 0 30px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Hoofdindeling: links en rechts */
+.project-screenshot-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Drie afbeeldingen links */
+.project-screenshot-left {
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Algemene kaart */
+.project-image {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(22, 29, 36, 0.82);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.project-image:hover {
+    transform: translateY(-3px);
+    border-color: var(--amber);
+    box-shadow: 0 14px 34px rgba(245, 166, 35, 0.12);
+}
+
+.project-image a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef1ee;
+    overflow: hidden;
+}
+
+/* Drie liggende afbeeldingen links */
+.project-image-small {
+    display: grid;
+    grid-template-rows: minmax(190px, 1fr) auto;
+}
+
+.project-image-small a {
+    min-height: 190px;
+}
+
+.project-image-small img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    padding: 12px;
+    object-fit: contain;
+}
+
+/* Lange verticale afbeelding rechts */
+.project-image-tall {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.project-image-tall a {
+    min-height: 100%;
+}
+
+.project-image-tall img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 720px;
+    max-height: 820px;
+    padding: 14px;
+    object-fit: contain;
+}
+
+/* Tekst onder de afbeeldingen */
+.project-image figcaption {
+    display: grid;
+    gap: 7px;
+    padding: 17px 19px 19px;
+}
+
+.project-image figcaption strong {
+    color: var(--paper);
+    font-size: 1rem;
+}
+
+.project-image figcaption span {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+    .project-screenshot-layout {
+        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    }
+
+    .project-image-small img {
+        height: 210px;
+    }
+
+    .project-image-tall img {
+        min-height: 670px;
+    }
+}
+
+/* GSM: alles onder elkaar */
+@media (max-width: 760px) {
+    .project-screenshot-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .project-screenshot-left {
+        grid-template-rows: auto;
+    }
+
+    .project-image-small {
+        grid-template-rows: auto auto;
+    }
+
+    .project-image-small img {
+        width: 100%;
+        height: auto;
+        max-height: 420px;
+    }
+
+    .project-image-tall {
+        grid-template-rows: auto auto;
+    }
+
+    .project-image-tall img {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: 750px;
+    }
+}
