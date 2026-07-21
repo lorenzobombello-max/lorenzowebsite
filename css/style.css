@@ -210,7 +210,11 @@ h1 span {
 .button.primary:hover { transform: translateY(-2px); background: #ffb84a; }
 
 .button.secondary { background: rgba(238, 241, 238, 0.03); }
-.button.secondary:hover { transform: translateY(-2px); border-color: var(--amber); }
+.button.secondary:hover{
+    transform:translateY(-2px);
+    border-color:var(--amber);
+    box-shadow:0 0 18px rgba(245,166,35,.18);
+}
 
 .button.small { min-height: 38px; padding: 0 16px; font-size: 0.86rem; }
 
@@ -403,6 +407,18 @@ h1 span {
 }
 
 /* -------------------- cv-downloads -------------------- */
+.cv-card{
+    transition:
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.cv-card:hover{
+    border-color:var(--amber);
+    transform:translateY(-3px);
+    box-shadow:0 0 18px rgba(245,166,35,.18);
+}
 
 .cv-grid {
   display: grid;
@@ -466,7 +482,11 @@ h1 span {
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.certificate-card:hover { transform: translateY(-4px); border-color: var(--amber-dim); }
+.certificate-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--amber);
+    box-shadow:0 0 18px rgba(245,166,35,.18);
+}
 
 .certificate-card img {
   width: 100%;
@@ -578,6 +598,16 @@ footer {
 .project-card p { margin-bottom: 16px; }
 
 .project-card .button { align-self: flex-start; margin-top: auto; }
+.project-card:hover {
+    border-color: var(--amber);
+    box-shadow: 0 0 18px rgba(245,166,35,.18);
+}
+
+.project-card:hover h3,
+.project-card:hover p,
+.project-card:hover .tag {
+    color: var(--paper);
+}
 
 /* project-detail: informatie-tabel (software / hardware / doelstellingen / skills) */
 .project-table {
