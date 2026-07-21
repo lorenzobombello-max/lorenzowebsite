@@ -378,7 +378,11 @@ h1 span {
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.card:hover {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(245,166,35,.18);
+}
 
 .card h3 { margin-bottom: 10px; font-size: 1.06rem; }
 
