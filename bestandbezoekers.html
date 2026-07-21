@@ -1,11 +1,11 @@
-<?php
+<?html
 
-$bestand = "bestandbezoekers.php";
+$bestand = "bestandbezoekers.html";
 
 if(!is_file($bestand))
 {
     $fp = fopen($bestand, 'a');
-    fwrite($file, PHP_EOL);
+    fwrite($file, html_EOL);
     fclose($fp);
     chmod($bestand, 0666666);
 }
