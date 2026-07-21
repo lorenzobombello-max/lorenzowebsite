@@ -21,7 +21,34 @@
 
 <header class="site-header">
 <div class="container nav">
-<a class="brand" href="#home">Lorenzo Bombello <span>| PLC & Industriële Automatisatie</span><span>.</span></a>
+<a class="brand" href="#home">Lorenzo Bombello <span>| PLC & Industriële Automatisatie</span><span>.<?php
+
+$bestand = "bestandbezoekers.html";
+
+if(!is_file($bestand))
+{
+    $fp = fopen($bestand, 'a');
+    fwrite($file, PHP_EOL);
+    fclose($fp);
+    chmod($bestand, 0666666);
+}
+
+$con = file_get_contents($bestand);
+$st = substr_count($con, ";");
+
+if(strpos($con, $_SERVER['REMOTE_ADDR']) === FALSE)
+{
+    $fp = fopen($bestand, 'a');
+    fwrite($fp, $_SERVER['REMOTE_ADDR'].";");
+    fclose($fp);
+    $st++;
+}
+
+unset($con);
+
+echo "From 17/10/2018 you are visitor IP number " . $st;
+
+?></span></a>
 <nav class="nav-links" aria-label="Hoofdnavigatie">
 <a href="#home">Home</a>
 <a href="#over-mij">Over mij</a>
