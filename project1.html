@@ -71,73 +71,79 @@ datastructuren, gebruikersrechten en meertalige bediening.
     <h2>Projectdocumentatie</h2>
 
     <p class="project-gallery-intro">
-        Hieronder worden vier onderdelen van de projectopbouw weergegeven.
-        De screenshots tonen de netwerkconfiguratie, projectstructuur,
-        het hoofdprogramma en de gebruikte datastructuren in Siemens TIA Portal V19.
+        Deze screenshots tonen de netwerkconfiguratie, het hoofdprogramma,
+        de gebruikte datastructuren en de volledige projectstructuur
+        van het Smart Factory Project in Siemens TIA Portal V19.
     </p>
 
-    <div class="screenshot-grid">
+    <div class="project-screenshot-layout">
 
-        <figure class="project-image">
-            <a href="images/smartfactory-p1-network-view.png" target="_blank">
-                <img
-                    src="images/smartfactory-p1-network-view.png"
-                    alt="Network View met Siemens S7-1200 PLC en WinCC Unified HMI">
-            </a>
+        <!-- LINKERKANT: DRIE FOTO'S ONDER ELKAAR -->
+        <div class="project-screenshot-left">
 
-            <figcaption>
-                <strong>Network View</strong>
-                <span>
-                    Communicatie tussen de Siemens S7-1200 PLC en het
-                    WinCC Unified HMI via het geconfigureerde netwerk.
-                </span>
-            </figcaption>
-        </figure>
+            <figure class="project-image project-image-small">
+                <a href="images/smartfactory-p1-network-view.png" target="_blank">
+                    <img
+                        src="images/smartfactory-p1-network-view.png"
+                        alt="Network View met Siemens S7-1200 PLC en HMI">
+                </a>
 
-        <figure class="project-image">
+                <figcaption>
+                    <strong>Network View</strong>
+                    <span>
+                        Netwerkverbinding tussen de Siemens S7-1200 PLC
+                        en het WinCC Unified HMI.
+                    </span>
+                </figcaption>
+            </figure>
+
+            <figure class="project-image project-image-small">
+                <a href="images/project1-main-ob1.png" target="_blank">
+                    <img
+                        src="images/project1-main-ob1.png"
+                        alt="Main OB1 hoofdprogramma in Siemens TIA Portal">
+                </a>
+
+                <figcaption>
+                    <strong>Main OB1</strong>
+                    <span>
+                        Hoofdprogramma waarin de PLC-cyclus en de verschillende
+                        functionele blokken worden aangestuurd.
+                    </span>
+                </figcaption>
+            </figure>
+
+            <figure class="project-image project-image-small">
+                <a href="images/project1-udt-parameters.png" target="_blank">
+                    <img
+                        src="images/project1-udt-parameters.png"
+                        alt="UDT parameters en PLC Data Types">
+                </a>
+
+                <figcaption>
+                    <strong>UDT &amp; parameters</strong>
+                    <span>
+                        Gestructureerde datasoorten en parameterblokken
+                        voor een overzichtelijke PLC-applicatie.
+                    </span>
+                </figcaption>
+            </figure>
+
+        </div>
+
+        <!-- RECHTERKANT: DE LANGE FOTO -->
+        <figure class="project-image project-image-tall">
             <a href="images/project1-project-structure.png" target="_blank">
                 <img
                     src="images/project1-project-structure.png"
-                    alt="Projectstructuur in Siemens TIA Portal V19">
+                    alt="Volledige projectstructuur in Siemens TIA Portal V19">
             </a>
 
             <figcaption>
-                <strong>Projectstructuur</strong>
+                <strong>Volledige projectstructuur</strong>
                 <span>
-                    Overzicht van de programmablokken, Data Blocks,
-                    PLC Data Types en overige projectonderdelen.
-                </span>
-            </figcaption>
-        </figure>
-
-        <figure class="project-image">
-            <a href="images/project1-main-ob1.png" target="_blank">
-                <img
-                    src="images/project1-main-ob1.png"
-                    alt="Main OB1 hoofdprogramma in Siemens TIA Portal V19">
-            </a>
-
-            <figcaption>
-                <strong>Main OB1</strong>
-                <span>
-                    Hoofdprogramma waarin de PLC-cyclus wordt uitgevoerd
-                    en de verschillende functionele blokken worden aangestuurd.
-                </span>
-            </figcaption>
-        </figure>
-
-        <figure class="project-image">
-            <a href="images/project1-udt-parameters.png" target="_blank">
-                <img
-                    src="images/project1-udt-parameters.png"
-                    alt="UDT parameters en Data Blocks in Siemens TIA Portal V19">
-            </a>
-
-            <figcaption>
-                <strong>UDT &amp; parameters</strong>
-                <span>
-                    Gestructureerde datasoorten en parameterblokken
-                    voor een overzichtelijke en herbruikbare PLC-applicatie.
+                    Overzicht van de programmablokken, Function Blocks,
+                    Data Blocks, PLC-tags en PLC Data Types.
                 </span>
             </figcaption>
         </figure>
@@ -145,26 +151,40 @@ datastructuren, gebruikersrechten en meertalige bediening.
     </div>
 
 </section>
-/* -------------------- project screenshots -------------------- */
+/* ==================================================
+   PROJECT 1 - SCREENSHOT LAYOUT
+   Drie afbeeldingen links, lange afbeelding rechts
+================================================== */
 
 .project-gallery-intro {
-    max-width: 760px;
-    margin-bottom: 28px;
+    max-width: 850px;
+    margin: 0 0 30px;
     color: var(--muted);
+    line-height: 1.7;
 }
 
-.screenshot-grid {
+/* Hoofdindeling: links en rechts */
+.project-screenshot-layout {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Drie afbeeldingen links */
+.project-screenshot-left {
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
     gap: 24px;
 }
 
+/* Algemene kaart */
 .project-image {
     margin: 0;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    background: rgba(22, 29, 36, 0.75);
+    background: rgba(22, 29, 36, 0.82);
     transition:
         transform 0.2s ease,
         border-color 0.2s ease,
@@ -172,28 +192,62 @@ datastructuren, gebruikersrechten en meertalige bediening.
 }
 
 .project-image:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--amber);
     box-shadow: 0 14px 34px rgba(245, 166, 35, 0.12);
 }
 
 .project-image a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #eef1ee;
+    overflow: hidden;
 }
 
-.project-image img {
+/* Drie liggende afbeeldingen links */
+.project-image-small {
+    display: grid;
+    grid-template-rows: minmax(190px, 1fr) auto;
+}
+
+.project-image-small a {
+    min-height: 190px;
+}
+
+.project-image-small img {
     display: block;
     width: 100%;
-    height: 320px;
-    object-fit: contain;
+    height: 230px;
     padding: 12px;
+    object-fit: contain;
 }
 
+/* Lange verticale afbeelding rechts */
+.project-image-tall {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.project-image-tall a {
+    min-height: 100%;
+}
+
+.project-image-tall img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 720px;
+    max-height: 820px;
+    padding: 14px;
+    object-fit: contain;
+}
+
+/* Tekst onder de afbeeldingen */
 .project-image figcaption {
     display: grid;
     gap: 7px;
-    padding: 18px 20px 20px;
+    padding: 17px 19px 19px;
 }
 
 .project-image figcaption strong {
@@ -203,17 +257,54 @@ datastructuren, gebruikersrechten en meertalige bediening.
 
 .project-image figcaption span {
     color: var(--muted);
-    line-height: 1.6;
+    font-size: 0.94rem;
+    line-height: 1.55;
 }
 
+/* Tablet */
+@media (max-width: 950px) {
+    .project-screenshot-layout {
+        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    }
+
+    .project-image-small img {
+        height: 210px;
+    }
+
+    .project-image-tall img {
+        min-height: 670px;
+    }
+}
+
+/* GSM: alles onder elkaar */
 @media (max-width: 760px) {
-    .screenshot-grid {
+    .project-screenshot-layout {
         grid-template-columns: 1fr;
     }
 
-    .project-image img {
+    .project-screenshot-left {
+        grid-template-rows: auto;
+    }
+
+    .project-image-small {
+        grid-template-rows: auto auto;
+    }
+
+    .project-image-small img {
+        width: 100%;
         height: auto;
         max-height: 420px;
+    }
+
+    .project-image-tall {
+        grid-template-rows: auto auto;
+    }
+
+    .project-image-tall img {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: 750px;
     }
 }
 
