@@ -261,7 +261,7 @@ h1 span {
   height: 96px;
   border-radius: 30%;
   object-fit: cover;
-  border: 6px solid var(--steel);
+  border: 2px solid var(--steel);
   flex-shrink: 0;
 }
 
