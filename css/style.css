@@ -784,3 +784,130 @@ footer {
     grid-column: auto;
     width: 100%;
 }
+
+/* -------------------- motivatiepagina -------------------- */
+
+.motivation-link {
+  display: flex;
+  flex-direction: column;
+}
+
+.motivation-link .project-cta { margin-top: auto; }
+
+.motivation-link:hover {
+  border-color: var(--amber);
+  box-shadow: 0 0 18px rgba(245, 166, 35, 0.18);
+}
+
+.motivation-page { padding: 92px 0 80px; }
+
+.motivation-header {
+  max-width: 860px;
+  margin-bottom: 42px;
+}
+
+.motivation-header .back-link { margin-bottom: 28px; }
+
+.motivation-header h1 {
+  max-width: 820px;
+  font-size: clamp(2.35rem, 5vw, 4.1rem);
+}
+
+.motivation-lead {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+}
+
+.motivation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.motivation-content { display: grid; gap: 20px; }
+
+.motivation-section,
+.motivation-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(155deg, rgba(28, 36, 44, 0.94), rgba(22, 29, 36, 0.9));
+}
+
+.motivation-section { padding: 28px 30px; }
+
+.motivation-section h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+}
+
+.motivation-section p:last-child { margin-bottom: 0; }
+
+.motivation-section p { color: var(--muted); }
+
+.motivation-panel {
+  position: sticky;
+  top: 98px;
+  padding: 28px;
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+
+.motivation-panel-label {
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  color: var(--amber);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.motivation-panel h2 { margin-bottom: 24px; }
+
+.motivation-facts {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.motivation-facts li {
+  display: grid;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.motivation-facts span {
+  font-family: var(--font-mono);
+  color: var(--muted-2);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.motivation-facts strong {
+  color: var(--paper);
+  font-size: 0.94rem;
+}
+
+.motivation-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 860px) {
+  .motivation-layout { grid-template-columns: 1fr; }
+  .motivation-panel { position: static; }
+}
+
+@media (max-width: 600px) {
+  .motivation-page { padding: 72px 0 60px; }
+  .motivation-section, .motivation-panel { padding: 22px; }
+}
+
