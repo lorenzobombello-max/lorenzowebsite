@@ -359,6 +359,20 @@ h1 span {
     background: #3b82f6;
     animation: pulseBlue 2s infinite;
 }
+@keyframes pulseGreen {
+    0%,100% { box-shadow:0 0 0 0 rgba(51,209,122,.6); }
+    50%     { box-shadow:0 0 0 8px rgba(51,209,122,0); }
+}
+
+@keyframes pulseAmber {
+    0%,100% { box-shadow:0 0 0 0 rgba(245,166,35,.6); }
+    50%     { box-shadow:0 0 0 8px rgba(245,166,35,0); }
+}
+
+@keyframes pulseBlue {
+    0%,100% { box-shadow:0 0 0 0 rgba(59,130,246,.6); }
+    50%     { box-shadow:0 0 0 8px rgba(59,130,246,0); }
+}
 
 /* -------------------- terminal-strip (signatuur-divider) -------------------- */
 /* Verwijst naar een rij schroefklemmen op een PLC-aansluitstrip. */
