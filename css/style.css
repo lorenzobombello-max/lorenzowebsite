@@ -257,8 +257,8 @@ h1 span {
 }
 
 .profile-photo {
-  width: 66px;
-  height: 66px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--steel);
