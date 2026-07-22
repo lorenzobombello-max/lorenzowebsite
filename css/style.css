@@ -259,7 +259,7 @@ h1 span {
 .profile-photo {
   width: 96px;
   height: 96px;
-  border-radius: 50%;
+  border-radius: 30%;
   object-fit: cover;
   border: 2px solid var(--steel);
   flex-shrink: 0;
