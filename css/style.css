@@ -333,6 +333,32 @@ h1 span {
 @media (prefers-reduced-motion: reduce) {
   .status-led { animation: none; }
 }
+/* Basis LED */
+.status-led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* Fase 1 - Groen */
+.status-green {
+    background: #33d17a;
+    animation: pulseGreen 2s infinite;
+}
+
+/* Fase 2 - Amber */
+.status-amber {
+    background: #f5a623;
+    animation: pulseAmber 2s infinite;
+}
+
+/* Fase 3 - Blauw */
+.status-blue {
+    background: #3b82f6;
+    animation: pulseBlue 2s infinite;
+}
 
 /* -------------------- terminal-strip (signatuur-divider) -------------------- */
 /* Verwijst naar een rij schroefklemmen op een PLC-aansluitstrip. */
