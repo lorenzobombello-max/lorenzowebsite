@@ -595,7 +595,7 @@ footer {
   .certificate-card img { height: 240px; }
 }
 .hero-banner{
-    width:100%;
+    width:120%;
     max-width:1400px;
     margin:25px auto 5px;
     overflow:hidden;
