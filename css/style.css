@@ -611,17 +611,16 @@ footer {
 .hero-banner{
     width:100%;
     max-width:1120px;      /* zelfde breedte als .container */
-    margin:25px auto;
-    overflow:hidden;
-    border-radius:12px;
+   margin: 25px auto 5px;
+    overflow: hidden;
+    border-radius: 12px;
 }
 
-.hero-banner img{
-    width:100%;
-    aspect-ratio:16/6;     /* speel met 16/5.5, 16/6 of 16/6.5 */
-    object-fit:cover;
-    object-position:center;
-    display:block;
+.hero-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 /* =========================================================
