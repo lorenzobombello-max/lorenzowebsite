@@ -1102,3 +1102,19 @@ html[data-theme="light"] .project-video { background: #111; }
   .theme-button { width: 1.65rem; height: 1.65rem; font-size: 0.82rem; }
   .language-switch { padding-inline: 0.42rem; }
 }
+
+/* Subtiele overgang bij wisselen van taal of thema */
+.hero-banner img {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+.hero-banner img.is-switching {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-banner img {
+    transition: none;
+  }
+}
