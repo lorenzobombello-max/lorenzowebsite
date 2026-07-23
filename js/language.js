@@ -513,10 +513,30 @@
     });
   }
   function applyLanguage(language) {
+
     var selected = ["nl", "en", "fr"].indexOf(language) !== -1 ? language : "nl";
-    translateTextNodes(selected); updateMetadata(selected); updateButtons(selected);
-    try { localStorage.setItem(STORAGE_KEY, selected); } catch (e) {}
-    window.dispatchEvent(new CustomEvent("portfolioLanguageChanged", { detail: { language: selected } }));
+
+    translateTextNodes(selected);
+    updateMetadata(selected);
+    updateButtons(selected);
+
+    try {
+        localStorage.setItem(STORAGE_KEY, selected);
+    } catch (e) {}
+
+    // Banner automatisch aanpassen aan de gekozen taal
+    const heroBanner = document.getElementById("heroBanner");
+
+    if (heroBanner) {
+        heroBanner.src = `images/banner_plc_${selected}.jpg`;
+    }
+
+    window.dispatchEvent(
+        new CustomEvent("portfolioLanguageChanged", {
+            detail: { language: selected }
+        })
+    );
+}
   }
   document.addEventListener("DOMContentLoaded", function () {
     var saved = "nl"; try { saved = localStorage.getItem(STORAGE_KEY) || "nl"; } catch (e) {}
