@@ -89,8 +89,8 @@ button:focus-visible {
   min-height: 72px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .brand {
@@ -108,7 +108,6 @@ button:focus-visible {
   gap: 26px;
   color: var(--muted);
   font-size: 0.94rem;
-  margin-left: auto;
 }
 
 .nav-links a { padding: 4px 0; border-bottom: 1px solid transparent; }
@@ -617,9 +616,6 @@ footer {
 
   .nav-links.open { display: flex; }
 
-  .language-switch { margin-left: auto; }
-  .theme-switch { margin-left: 8px; }
-
   .nav-toggle { display: inline-flex; }
 
   .contact-box { flex-direction: column; align-items: flex-start; }
@@ -988,7 +984,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-left: 18px;
+  margin-left: auto;
   padding: 0.3rem 0.55rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1012,7 +1008,7 @@ footer {
 .language-button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
 .language-button.active { color: var(--amber); text-shadow: 0 0 10px rgba(255, 184, 77, 0.35); }
 @media (max-width: 860px) {
-  .language-switch { margin-left: 14px; margin-right: 0.45rem; }
+  .language-switch { margin-left: auto; margin-right: 0.45rem; }
 }
 
 
@@ -1062,7 +1058,6 @@ html[data-theme="light"] .project-video { background: #111; }
 
 .theme-switch {
   display: inline-flex;
-  margin-left: 10px;
   align-items: center;
   gap: 0.12rem;
   padding: 0.25rem 0.35rem;
@@ -1124,8 +1119,133 @@ html[data-theme="light"] .project-video { background: #111; }
   }
 }
 
-/* Compacte headergroepering op mobiel: taal en thema blijven rechts uitgelijnd. */
-@media (max-width: 720px) {
-  .language-switch { margin-left: auto; margin-right: 0.45rem; }
-  .theme-switch { margin-left: 8px; }
+
+/* Virtual Automation Experience */
+.experience-section {
+  padding-top: 14px;
+  padding-bottom: 72px;
+}
+
+.experience-header {
+  max-width: 790px;
+  margin: 0 0 30px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+
+.experience-header h2 {
+  margin: 8px 0 12px;
+}
+
+.experience-header > p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+
+.experience-grid { align-items: stretch; }
+
+.experience-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-visual {
+  position: relative;
+  height: 156px;
+  margin: -2px -2px 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background:
+    linear-gradient(rgba(245,166,35,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,.055) 1px, transparent 1px),
+    var(--panel);
+  background-size: 20px 20px;
+}
+
+.visual-label {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: var(--muted);
+  font: 700 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .12em;
+}
+
+.experience-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7d8790;
+  box-shadow: 0 0 0 4px rgba(125,135,144,.12);
+}
+
+.available .status-dot {
+  background: #47c878;
+  box-shadow: 0 0 0 4px rgba(71,200,120,.14), 0 0 12px rgba(71,200,120,.45);
+}
+
+.disabled-button {
+  cursor: default;
+  opacity: .58;
+  pointer-events: none;
+}
+
+/* Mini conveyor illustration */
+.mini-conveyor {
+  position: absolute;
+  left: 25px;
+  right: 66px;
+  bottom: 34px;
+  height: 27px;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, transparent 0 20px, rgba(245,166,35,.22) 21px 23px);
+}
+.mini-conveyor::before, .mini-conveyor::after { content: ''; position: absolute; bottom: -13px; width: 8px; height: 13px; background: var(--line); }
+.mini-conveyor::before { left: 18px; } .mini-conveyor::after { right: 18px; }
+.mini-box { position: absolute; left: 42%; bottom: 4px; width: 28px; height: 28px; display:grid; place-items:center; border: 2px solid var(--amber); background: rgba(245,166,35,.15); color: var(--paper); font: 700 9px ui-monospace, monospace; }
+.mini-stack { position:absolute; right:18px; top:23px; display:grid; gap:3px; padding:5px; border:1px solid var(--line); border-radius:5px; }
+.mini-stack i { width:10px; height:10px; border-radius:50%; background:#38414a; }
+.mini-stack i:last-child { background:#47c878; box-shadow:0 0 8px rgba(71,200,120,.7); }
+.mini-robot { position:absolute; right:28px; bottom:31px; width:35px; height:55px; border-bottom:8px solid var(--line); }
+.mini-robot i { position:absolute; left:14px; bottom:7px; width:8px; height:38px; border-radius:5px; background:var(--amber); transform:rotate(25deg); transform-origin:bottom; }
+.mini-robot b { position:absolute; left:22px; top:4px; width:24px; height:7px; border-radius:5px; background:var(--amber); transform:rotate(-20deg); }
+
+/* Mini robot illustration */
+.robot-base-mini { position:absolute; left:38px; bottom:25px; width:55px; height:15px; border:2px solid var(--line); border-radius:5px 5px 2px 2px; }
+.robot-arm-mini { position:absolute; left:62px; bottom:38px; width:145px; height:90px; }
+.robot-arm-mini i, .robot-arm-mini b { position:absolute; display:block; height:13px; border-radius:8px; background:var(--amber); transform-origin:left center; }
+.robot-arm-mini i { left:0; bottom:0; width:76px; transform:rotate(-58deg); }
+.robot-arm-mini b { left:40px; bottom:64px; width:76px; transform:rotate(22deg); }
+.robot-arm-mini em { position:absolute; left:108px; bottom:35px; width:16px; height:28px; border:3px solid var(--paper); border-top:0; }
+.pick-product { position:absolute; right:32px; bottom:29px; width:34px; height:34px; display:grid; place-items:center; border:2px solid var(--amber); color:var(--paper); font:700 9px ui-monospace, monospace; }
+
+/* Mini pneumatics illustration */
+.mini-cylinder { position:absolute; left:32px; right:40px; top:57px; height:38px; border:2px solid var(--line); border-radius:5px; }
+.mini-cylinder span { position:absolute; left:48%; top:0; bottom:0; width:4px; background:var(--amber); }
+.mini-cylinder i { position:absolute; left:50%; top:14px; width:76px; height:7px; background:var(--paper); }
+.mini-valve { position:absolute; left:45px; bottom:17px; display:flex; border:1px solid var(--line); }
+.mini-valve b { padding:4px 8px; border-right:1px solid var(--line); color:var(--muted); font:700 9px ui-monospace, monospace; }
+.mini-valve b:last-child { border-right:0; }
+.air-lines { position:absolute; left:78px; bottom:42px; width:115px; height:18px; border-left:2px solid var(--amber); border-bottom:2px solid var(--amber); opacity:.7; }
+
+html[data-theme="light"] .experience-header > p:last-child,
+html[data-theme="light"] .experience-status { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .experience-section { padding-bottom: 54px; }
+  .experience-visual { height: 145px; }
 }
