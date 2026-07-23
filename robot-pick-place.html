@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Interactieve Robot Pick & Place-demonstratie met automatische cyclus, handbediening en live PLC-I/O." data-i18n-content-nl="Interactieve Robot Pick & Place-demonstratie met automatische cyclus, handbediening en live PLC-I/O." data-i18n-content-en="Interactive Robot Pick & Place demonstration with automatic cycle, manual control and live PLC I/O." data-i18n-content-fr="Démonstration interactive Robot Pick & Place avec cycle automatique, commande manuelle et E/S API en direct."/>
+<title data-i18n-title-nl="Lorenzo Bombello | Robot Pick & Place" data-i18n-title-en="Lorenzo Bombello | Robot Pick & Place" data-i18n-title-fr="Lorenzo Bombello | Robot Pick & Place">Lorenzo Bombello | Robot Pick & Place</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<script src="js/theme-init.js"></script>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/robot-pick-place.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header"><div class="container nav">
+<a class="brand" href="index.html#home">Lorenzo<span></span></a>
+<nav aria-label="Hoofdnavigatie" class="nav-links" data-i18n-aria-en="Main navigation" data-i18n-aria-fr="Navigation principale" data-i18n-aria-nl="Hoofdnavigatie">
+<a href="index.html#home">Home</a><a href="index.html#over-mij">Over mij</a><a href="index.html#expertise">Expertise</a><a href="projecten.html">Projecten</a><a href="index.html#opleiding">Opleiding</a><a href="index.html#cv">CV</a><a href="certificates.html">Certificaten</a><a href="video.html">Video's</a><a aria-current="page" href="automation-lab.html">Lab</a><a href="index.html#contact">Contact</a>
+</nav>
+<div aria-label="Taalkeuze" class="language-switch" role="group"><button aria-pressed="true" class="language-button" data-lang="nl" type="button">NL</button><span>|</span><button aria-pressed="false" class="language-button" data-lang="en" type="button">EN</button><span>|</span><button aria-pressed="false" class="language-button" data-lang="fr" type="button">FR</button></div>
+<div aria-label="Themakeuze" class="theme-switch" role="group"><button aria-label="Donker thema" aria-pressed="true" class="theme-button" data-theme-choice="dark" type="button">🌙</button><button aria-label="Licht thema" aria-pressed="false" class="theme-button" data-theme-choice="light" type="button">☀️</button><button aria-label="Automatisch thema" aria-pressed="false" class="theme-button" data-theme-choice="auto" type="button">◐</button></div>
+<button aria-expanded="false" aria-label="Menu openen" class="nav-toggle"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg></button>
+</div></header>
+<main class="robot-main">
+<section class="robot-intro section"><div class="container">
+<a class="button secondary small" href="projecten.html">← <span data-r-nl="Terug naar projecten" data-r-en="Back to projects" data-r-fr="Retour aux projets">Terug naar projecten</span></a>
+<p class="network-tag">FB20 · ROBOT CELL 02</p>
+<h1>Robot Pick &amp; Place</h1>
+<p class="robot-lead" data-r-nl="Bedien een industriële robotcel in AUTO of MANUAL. Volg de pick-and-place-sequentie, de grijperstatus en de live PLC-signalen." data-r-en="Operate an industrial robot cell in AUTO or MANUAL. Follow the pick-and-place sequence, gripper status and live PLC signals." data-r-fr="Pilotez une cellule robotisée en mode AUTO ou MANUEL. Suivez la séquence pick-and-place, l’état de la pince et les signaux API en direct.">Bedien een industriële robotcel in AUTO of MANUAL. Volg de pick-and-place-sequentie, de grijperstatus en de live PLC-signalen.</p>
+</div></section>
+<section class="section"><div class="container robot-layout">
+<div class="robot-panel">
+<div class="panel-title"><div><span>SIMATIC S7-1200 · CELL 02</span><h2 data-r-nl="Robotcel" data-r-en="Robot cell" data-r-fr="Cellule robotisée">Robotcel</h2></div><div class="tower"><i data-lamp="red"></i><i data-lamp="amber"></i><i data-lamp="green"></i></div></div>
+<div class="robot-stage" id="robotStage" aria-live="polite">
+<div class="zone-label">ROBOT SAFETY ZONE · CELL 02</div>
+<div class="input-station"><div class="product" id="product">P02</div><span>INFEED</span></div>
+<div class="robot-unit" id="robotUnit"><div class="base"><strong>R2</strong></div><div class="arm" id="robotArm"><div class="lower"></div><div class="joint j1"></div><div class="upper"></div><div class="joint j2"></div><div class="gripper" id="gripper"><i></i><i></i></div></div></div>
+<div class="output-station"><div class="target" id="target"></div><span>OUTFEED</span></div>
+<div class="sensor-beacon" id="productSensor"><b></b><small>B2.0</small></div>
+</div>
+<div class="mode-row"><button class="mode-button active" id="autoMode" type="button">AUTO</button><button class="mode-button" id="manualMode" type="button">MANUAL</button><span id="modeInfo">AUTO</span></div>
+<div class="control-grid">
+<button class="control start" id="startBtn" type="button"><b data-r-nl="START" data-r-en="START" data-r-fr="MARCHE">START</b><small>I1.0</small></button>
+<button class="control stop" id="stopBtn" type="button"><b>STOP</b><small>I1.1</small></button>
+<button class="control reset" id="resetBtn" type="button"><b>RESET</b><small>I1.2</small></button>
+<button class="control home" id="homeBtn" type="button"><b>HOME</b><small>HMI</small></button>
+<button class="control jog" id="pickBtn" type="button"><b>PICK</b><small>MANUAL</small></button>
+<button class="control jog" id="placeBtn" type="button"><b>PLACE</b><small>MANUAL</small></button>
+<button class="control grip" id="gripBtn" type="button"><b data-r-nl="GRIJPER" data-r-en="GRIPPER" data-r-fr="PINCE">GRIJPER</b><small>Q1.1</small></button>
+<button class="control emergency" id="estopBtn" type="button"><b data-r-nl="NOODSTOP" data-r-en="EMERGENCY" data-r-fr="ARRÊT URGENCE">NOODSTOP</b><small>I1.3</small></button>
+</div>
+</div>
+<aside class="diagnostics">
+<section class="diag hmi"><div class="hmi-head"><span>WINCC UNIFIED</span><strong id="clock">00:00:00</strong></div><div class="status"><span data-r-nl="Robotstatus" data-r-en="Robot status" data-r-fr="État du robot">Robotstatus</span><strong id="robotStatus">GEREED</strong></div><div class="metrics"><div><span data-r-nl="Positie" data-r-en="Position" data-r-fr="Position">Positie</span><b id="position">HOME</b></div><div><span data-r-nl="Grijper" data-r-en="Gripper" data-r-fr="Pince">Grijper</span><b id="gripperState">OPEN</b></div><div><span data-r-nl="Cycli" data-r-en="Cycles" data-r-fr="Cycles">Cycli</span><b id="cycles">0</b></div><div><span data-r-nl="Product" data-r-en="Product" data-r-fr="Produit">Product</span><b id="productState">INVOER</b></div></div><p id="message" data-r-nl="Druk op START voor de automatische cyclus." data-r-en="Press START for the automatic cycle." data-r-fr="Appuyez sur MARCHE pour lancer le cycle automatique.">Druk op START voor de automatische cyclus.</p></section>
+<section class="diag"><h3 data-r-nl="Live PLC-I/O" data-r-en="Live PLC I/O" data-r-fr="E/S API en direct">Live PLC-I/O</h3><div class="io-list">
+<div data-io="product"><i></i><code>I1.4</code><span data-r-nl="Product gedetecteerd" data-r-en="Product detected" data-r-fr="Produit détecté">Product gedetecteerd</span></div><div data-io="home"><i></i><code>I1.5</code><span>Robot HOME</span></div><div data-io="estop"><i></i><code>I1.3</code><span data-r-nl="Noodstop" data-r-en="Emergency stop" data-r-fr="Arrêt d’urgence">Noodstop</span></div><hr/><div data-io="robot"><i></i><code>Q1.0</code><span data-r-nl="Robot bewegen" data-r-en="Robot motion" data-r-fr="Mouvement robot">Robot bewegen</span></div><div data-io="gripper"><i></i><code>Q1.1</code><span data-r-nl="Grijper sluiten" data-r-en="Close gripper" data-r-fr="Fermer la pince">Grijper sluiten</span></div><div data-io="green"><i></i><code>Q1.2</code><span data-r-nl="Groene lamp" data-r-en="Green lamp" data-r-fr="Voyant vert">Groene lamp</span></div></div></section>
+<section class="diag sequence"><h3 data-r-nl="Sequentiestappen" data-r-en="Sequence steps" data-r-fr="Étapes de séquence">Sequentiestappen</h3><ol><li data-step="1">1 · HOME</li><li data-step="2">2 · PICK</li><li data-step="3">3 · GRIP</li><li data-step="4">4 · PLACE</li><li data-step="5">5 · RELEASE</li><li data-step="6">6 · RETURN</li></ol></section>
+</aside>
+</div></section>
+<section class="section explanation"><div class="container"><div class="section-header"><p class="network-tag">DB20 · ROBOT SEQUENCE</p><h2 data-r-nl="Wat toont deze demo?" data-r-en="What does this demo show?" data-r-fr="Que montre cette démonstration ?">Wat toont deze demo?</h2></div><div class="grid"><article class="card"><h3>AUTO / MANUAL</h3><p data-r-nl="AUTO voert de volledige cyclus uit. In MANUAL kun je HOME, PICK, PLACE en de grijper afzonderlijk bedienen." data-r-en="AUTO runs the full cycle. In MANUAL you can operate HOME, PICK, PLACE and the gripper separately." data-r-fr="AUTO exécute le cycle complet. En MANUEL, vous pouvez commander séparément HOME, PICK, PLACE et la pince.">AUTO voert de volledige cyclus uit. In MANUAL kun je HOME, PICK, PLACE en de grijper afzonderlijk bedienen.</p></article><article class="card"><h3 data-r-nl="Toestandsmachine" data-r-en="State machine" data-r-fr="Machine à états">Toestandsmachine</h3><p data-r-nl="De robot doorloopt gecontroleerd HOME, PICK, GRIP, PLACE, RELEASE en RETURN." data-r-en="The robot progresses through HOME, PICK, GRIP, PLACE, RELEASE and RETURN in a controlled sequence." data-r-fr="Le robot parcourt de manière contrôlée HOME, PICK, GRIP, PLACE, RELEASE et RETURN.">De robot doorloopt gecontroleerd HOME, PICK, GRIP, PLACE, RELEASE en RETURN.</p></article><article class="card"><h3 data-r-nl="Diagnose" data-r-en="Diagnostics" data-r-fr="Diagnostic">Diagnose</h3><p data-r-nl="De HMI en I/O-monitor tonen positie, grijper, productsensor, actieve uitgangen en cyclusteller in real time." data-r-en="The HMI and I/O monitor show position, gripper, product sensor, active outputs and cycle count in real time." data-r-fr="L’IHM et le moniteur E/S affichent en temps réel la position, la pince, le capteur produit, les sorties actives et le compteur de cycles.">De HMI en I/O-monitor tonen positie, grijper, productsensor, actieve uitgangen en cyclusteller in real time.</p></article></div></div></section>
+</main>
+<footer><div class="container">© 2026 Lorenzo Bombello · Robot Pick &amp; Place</div></footer>
+<script src="js/nav.js"></script><script src="js/language.js"></script><script src="js/theme.js"></script><script src="js/robot-pick-place.js"></script>
+</body></html>
