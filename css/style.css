@@ -973,7 +973,7 @@ footer {
 
 
 
-/* Language switch: lightweight, build-free NL/EN selector */
+/* Language switch: lightweight, build-free NL/EN/FR selector */
 .language-switch {
   display: inline-flex;
   align-items: center;
