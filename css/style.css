@@ -971,3 +971,36 @@ footer {
   .motivation-section, .motivation-panel { padding: 22px; }
 }
 
+
+
+/* Language switch: lightweight, build-free NL/EN selector */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(16, 22, 28, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1;
+}
+.language-button {
+  appearance: none;
+  border: 0;
+  padding: 0.25rem 0.15rem;
+  background: transparent;
+  color: var(--muted-2);
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.language-button:hover, .language-button:focus-visible { color: var(--paper); }
+.language-button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
+.language-button.active { color: var(--amber); text-shadow: 0 0 10px rgba(255, 184, 77, 0.35); }
+@media (max-width: 860px) {
+  .language-switch { margin-left: auto; margin-right: 0.45rem; }
+}
