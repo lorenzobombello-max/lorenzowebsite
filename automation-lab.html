@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Interactieve demonstratie van een geautomatiseerde transport- en robotcel met live I/O-status." data-i18n-content-nl="Interactieve demonstratie van een geautomatiseerde transport- en robotcel met live I/O-status." data-i18n-content-en="Interactive demonstration of an automated conveyor and robot cell with live I/O status." data-i18n-content-fr="Démonstration interactive d’une cellule automatisée avec convoyeur, robot et état E/S en direct." name="description"/>
+<title data-i18n-title-nl="Lorenzo Bombello | Virtual Automation Lab" data-i18n-title-en="Lorenzo Bombello | Virtual Automation Lab" data-i18n-title-fr="Lorenzo Bombello | Laboratoire d’automatisation virtuel">Lorenzo Bombello | Virtual Automation Lab</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script src="js/theme-init.js"></script>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/automation-lab.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header">
+<div class="container nav">
+<a class="brand" href="index.html#home">Lorenzo Bombello <span></span><span>.<br/> </span></a>
+<nav aria-label="Hoofdnavigatie" class="nav-links" data-i18n-aria-en="Main navigation" data-i18n-aria-fr="Navigation principale" data-i18n-aria-nl="Hoofdnavigatie">
+<a href="index.html#home">Home</a>
+<a href="index.html#over-mij">Over mij</a>
+<a href="index.html#expertise">Expertise</a>
+<a href="projecten.html">Projecten</a>
+<a href="index.html#opleiding">Opleiding</a>
+<a href="index.html#cv">CV</a>
+<a href="certificates.html">Certificaten</a>
+<a href="video.html">Video's</a>
+<a aria-current="page" href="automation-lab.html">Lab</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+<div aria-label="Taalkeuze" class="language-switch" data-i18n-aria-en="Language selection" data-i18n-aria-fr="Sélection de la langue" data-i18n-aria-nl="Taalkeuze" role="group"><button aria-pressed="true" class="language-button" data-lang="nl" type="button">NL</button><span aria-hidden="true">|</span><button aria-pressed="false" class="language-button" data-lang="en" type="button">EN</button><span aria-hidden="true">|</span><button aria-pressed="false" class="language-button" data-lang="fr" type="button">FR</button></div>
+<div aria-label="Themakeuze" class="theme-switch" role="group"><button aria-label="Donker thema" aria-pressed="true" class="theme-button" data-theme-choice="dark" title="Donker thema" type="button">🌙<span class="sr-only">Donker</span></button><button aria-label="Licht thema" aria-pressed="false" class="theme-button" data-theme-choice="light" title="Licht thema" type="button">☀️<span class="sr-only">Licht</span></button><button aria-label="Automatisch thema" aria-pressed="false" class="theme-button" data-theme-choice="auto" title="Automatisch thema" type="button">◐<span class="sr-only">Auto</span></button></div>
+<button aria-expanded="false" aria-label="Menu openen" class="nav-toggle" data-i18n-aria-en="Open menu" data-i18n-aria-fr="Ouvrir le menu" data-i18n-aria-nl="Menu openen"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg></button>
+</div>
+</header>
+
+<main class="lab-main">
+<section class="lab-intro section">
+<div class="container">
+<p class="network-tag" data-lab-nl="FB10 · Interactieve automatisatiecel" data-lab-en="FB10 · Interactive automation cell" data-lab-fr="FB10 · Cellule d’automatisation interactive">FB10 · Interactieve automatisatiecel</p>
+<h1 data-lab-nl="Virtual Automation Lab" data-lab-en="Virtual Automation Lab" data-lab-fr="Laboratoire d’automatisation virtuel">Virtual Automation Lab</h1>
+<p class="lab-lead" data-lab-nl="Bedien een compacte transport- en robotcel. Start de installatie, volg de I/O-signalen en test de veilige storingsafhandeling." data-lab-en="Operate a compact conveyor and robot cell. Start the installation, follow the I/O signals and test the safe fault-handling sequence." data-lab-fr="Pilotez une cellule compacte avec convoyeur et robot. Démarrez l’installation, suivez les signaux E/S et testez la gestion sûre des défauts.">Bedien een compacte transport- en robotcel. Start de installatie, volg de I/O-signalen en test de veilige storingsafhandeling.</p>
+</div>
+</section>
+
+<section class="lab-workspace section">
+<div class="container lab-layout">
+<div class="lab-machine-panel">
+<div class="lab-panel-heading">
+<div>
+<span class="lab-eyebrow">SIMATIC S7-1200 · AUTO CELL 01</span>
+<h2 data-lab-nl="Transport- en robotcel" data-lab-en="Conveyor and robot cell" data-lab-fr="Cellule convoyeur et robot">Transport- en robotcel</h2>
+</div>
+<div class="stack-light" aria-label="Signaaltoren">
+<span class="stack-red" data-stack="red"></span><span class="stack-amber" data-stack="amber"></span><span class="stack-green" data-stack="green"></span>
+</div>
+</div>
+
+<div class="cell-stage" id="cellStage" aria-live="polite">
+<div class="safety-fence" aria-hidden="true"></div>
+<div class="conveyor-wrap">
+<div class="conveyor" id="conveyor"><div class="belt-lines"></div><div class="product" id="product"><span>01</span></div></div>
+<div class="sensor sensor-left"><span class="sensor-beam"></span><small>BG1</small></div>
+<div class="sensor sensor-stop"><span class="sensor-beam"></span><small>B1.0</small></div>
+<div class="motor-unit"><span class="motor-disc"></span><small>M1</small></div>
+</div>
+<div class="robot-base">
+<div class="robot-arm" id="robotArm">
+<div class="arm-segment arm-lower"></div><div class="robot-joint joint-main"></div><div class="arm-segment arm-upper"></div><div class="robot-joint joint-tip"></div><div class="gripper"><i></i><i></i></div>
+</div>
+<div class="robot-pedestal"><strong>R1</strong><span>READY</span></div>
+</div>
+<div class="pallet"><span>P01</span><div class="pallet-slot" id="palletSlot"></div></div>
+<div class="guard-label">CELL 01 · SAFETY ZONE</div>
+</div>
+
+<div class="lab-controls" aria-label="Bedieningspaneel">
+<button class="lab-control start" id="startButton" type="button"><span class="control-lamp"></span><strong data-lab-nl="START" data-lab-en="START" data-lab-fr="MARCHE">START</strong><small>I0.0</small></button>
+<button class="lab-control stop" id="stopButton" type="button"><span class="control-lamp"></span><strong data-lab-nl="STOP" data-lab-en="STOP" data-lab-fr="ARRÊT">STOP</strong><small>I0.1</small></button>
+<button class="lab-control reset" id="resetButton" type="button"><span class="control-lamp"></span><strong data-lab-nl="RESET" data-lab-en="RESET" data-lab-fr="RÉARMEMENT">RESET</strong><small>I0.2</small></button>
+<button class="lab-control emergency" id="emergencyButton" aria-pressed="false" type="button"><span class="estop-cap"></span><strong data-lab-nl="NOODSTOP" data-lab-en="EMERGENCY" data-lab-fr="ARRÊT D’URGENCE">NOODSTOP</strong><small>I0.3</small></button>
+</div>
+</div>
+
+<aside class="lab-diagnostics">
+<section class="diagnostic-card hmi-card">
+<div class="hmi-top"><span>WINCC UNIFIED</span><strong id="clock">00:00:00</strong></div>
+<div class="hmi-status-line"><span data-lab-nl="Installatiestatus" data-lab-en="Installation status" data-lab-fr="État de l’installation">Installatiestatus</span><strong id="machineState">GEREED</strong></div>
+<div class="hmi-process">
+<div><span data-lab-nl="Modus" data-lab-en="Mode" data-lab-fr="Mode">Modus</span><strong>AUTO</strong></div>
+<div><span data-lab-nl="Cycli" data-lab-en="Cycles" data-lab-fr="Cycles">Cycli</span><strong id="cycleCount">0</strong></div>
+<div><span data-lab-nl="Productpositie" data-lab-en="Product position" data-lab-fr="Position du produit">Productpositie</span><strong id="positionValue">0%</strong></div>
+<div><span data-lab-nl="Alarmen" data-lab-en="Alarms" data-lab-fr="Alarmes">Alarmen</span><strong id="alarmCount">0</strong></div>
+</div>
+<div class="hmi-message" id="hmiMessage" data-lab-nl="Druk op START om de automatische cyclus te beginnen." data-lab-en="Press START to begin the automatic cycle." data-lab-fr="Appuyez sur MARCHE pour démarrer le cycle automatique.">Druk op START om de automatische cyclus te beginnen.</div>
+</section>
+
+<section class="diagnostic-card">
+<h3 data-lab-nl="Live I/O-monitor" data-lab-en="Live I/O monitor" data-lab-fr="Moniteur E/S en direct">Live I/O-monitor</h3>
+<div class="io-table">
+<div class="io-row" data-io="start"><span class="io-led"></span><code>I0.0</code><span data-lab-nl="Startdrukknop" data-lab-en="Start pushbutton" data-lab-fr="Bouton de marche">Startdrukknop</span></div>
+<div class="io-row" data-io="stop"><span class="io-led"></span><code>I0.1</code><span data-lab-nl="Stopdrukknop" data-lab-en="Stop pushbutton" data-lab-fr="Bouton d’arrêt">Stopdrukknop</span></div>
+<div class="io-row" data-io="sensor"><span class="io-led"></span><code>I0.4</code><span data-lab-nl="Productsensor" data-lab-en="Product sensor" data-lab-fr="Capteur produit">Productsensor</span></div>
+<div class="io-row" data-io="emergency"><span class="io-led"></span><code>I0.3</code><span data-lab-nl="Noodstop actief" data-lab-en="Emergency stop active" data-lab-fr="Arrêt d’urgence actif">Noodstop actief</span></div>
+<div class="io-separator"></div>
+<div class="io-row" data-io="motor"><span class="io-led output"></span><code>Q0.0</code><span data-lab-nl="Transportmotor" data-lab-en="Conveyor motor" data-lab-fr="Moteur convoyeur">Transportmotor</span></div>
+<div class="io-row" data-io="robot"><span class="io-led output"></span><code>Q0.1</code><span data-lab-nl="Robotcyclus" data-lab-en="Robot cycle" data-lab-fr="Cycle robot">Robotcyclus</span></div>
+<div class="io-row" data-io="green"><span class="io-led output"></span><code>Q0.2</code><span data-lab-nl="Groene lamp" data-lab-en="Green lamp" data-lab-fr="Voyant vert">Groene lamp</span></div>
+<div class="io-row" data-io="red"><span class="io-led output"></span><code>Q0.3</code><span data-lab-nl="Rode storingslamp" data-lab-en="Red fault lamp" data-lab-fr="Voyant rouge de défaut">Rode storingslamp</span></div>
+</div>
+</section>
+
+<section class="diagnostic-card ladder-card">
+<h3 data-lab-nl="Actieve PLC-logica" data-lab-en="Active PLC logic" data-lab-fr="Logique API active">Actieve PLC-logica</h3>
+<div class="ladder-rung" id="ladderRung"><span class="rail"></span><span class="contact" data-contact="estop">I0.3</span><span class="contact" data-contact="start">I0.0</span><span class="contact" data-contact="run">M0.0</span><span class="coil">Q0.0</span></div>
+<p data-lab-nl="De rung kleurt groen wanneer de transportmotor aangestuurd wordt." data-lab-en="The rung turns green while the conveyor motor is energised." data-lab-fr="Le réseau devient vert lorsque le moteur du convoyeur est commandé.">De rung kleurt groen wanneer de transportmotor aangestuurd wordt.</p>
+</section>
+</aside>
+</div>
+</section>
+
+<section class="section lab-explanation">
+<div class="container">
+<div class="section-header"><p class="network-tag">DB10 · Sequence Control</p><h2 data-lab-nl="Wat toont deze demo?" data-lab-en="What does this demo show?" data-lab-fr="Que montre cette démonstration ?">Wat toont deze demo?</h2></div>
+<div class="grid">
+<article class="card"><h3 data-lab-nl="Veilige startvoorwaarden" data-lab-en="Safe start conditions" data-lab-fr="Conditions de démarrage sûres">Veilige startvoorwaarden</h3><p data-lab-nl="De cel start alleen wanneer de noodstop vrijgegeven is. STOP en NOODSTOP onderbreken onmiddellijk de uitgangen." data-lab-en="The cell starts only when the emergency stop is released. STOP and EMERGENCY immediately interrupt the outputs." data-lab-fr="La cellule démarre uniquement lorsque l’arrêt d’urgence est libéré. ARRÊT et ARRÊT D’URGENCE interrompent immédiatement les sorties.">De cel start alleen wanneer de noodstop vrijgegeven is. STOP en NOODSTOP onderbreken onmiddellijk de uitgangen.</p></article>
+<article class="card"><h3 data-lab-nl="Sequentiële besturing" data-lab-en="Sequential control" data-lab-fr="Commande séquentielle">Sequentiële besturing</h3><p data-lab-nl="Transport, detectie, robotbeweging en productafvoer volgen elkaar gecontroleerd op als eenvoudige toestandsmachine." data-lab-en="Conveying, detection, robot motion and product discharge follow one another as a controlled state machine." data-lab-fr="Le transport, la détection, le mouvement du robot et l’évacuation du produit se succèdent dans une machine à états contrôlée.">Transport, detectie, robotbeweging en productafvoer volgen elkaar gecontroleerd op als eenvoudige toestandsmachine.</p></article>
+<article class="card"><h3 data-lab-nl="Diagnose in real time" data-lab-en="Real-time diagnostics" data-lab-fr="Diagnostic en temps réel">Diagnose in real time</h3><p data-lab-nl="De HMI, I/O-monitor en ladderweergave tonen tegelijk wat de installatie doet en welke signalen actief zijn." data-lab-en="The HMI, I/O monitor and ladder view simultaneously show what the installation is doing and which signals are active." data-lab-fr="L’IHM, le moniteur E/S et la vue Ladder montrent simultanément le fonctionnement de l’installation et les signaux actifs.">De HMI, I/O-monitor en ladderweergave tonen tegelijk wat de installatie doet en welke signalen actief zijn.</p></article>
+</div>
+</div>
+</section>
+</main>
+<footer><div class="container">© 2026 Lorenzo Bombello · Virtual Automation Lab</div></footer>
+<script src="js/nav.js"></script>
+<script src="js/language.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/automation-lab.js"></script>
+</body>
+</html>
