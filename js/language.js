@@ -3,6 +3,7 @@
   var STORAGE_KEY = "lorenzo-portfolio-language";
   var translations = {
   "Home": "Home",
+  "Interactief automatisatielab →": "Interactive Automation Lab →",
   "Over mij": "About me",
   "Expertise": "Expertise",
   "Projecten": "Projects",
@@ -235,6 +236,7 @@
 };
   var frTranslations = {
   "Home": "Accueil",
+  "Interactief automatisatielab →": "Laboratoire d’automatisation interactif →",
   "Over mij": "À propos de moi",
   "Expertise": "Expertise",
   "Projecten": "Projets",
