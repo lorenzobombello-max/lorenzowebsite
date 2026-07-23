@@ -537,7 +537,7 @@
         })
     );
 }
-  }
+  
   document.addEventListener("DOMContentLoaded", function () {
     var saved = "nl"; try { saved = localStorage.getItem(STORAGE_KEY) || "nl"; } catch (e) {}
     document.querySelectorAll(".language-button").forEach(function (button) {
