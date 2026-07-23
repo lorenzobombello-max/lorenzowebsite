@@ -524,13 +524,6 @@
         localStorage.setItem(STORAGE_KEY, selected);
     } catch (e) {}
 
-    // Banner automatisch aanpassen aan de gekozen taal
-    const heroBanner = document.getElementById("heroBanner");
-
-    if (heroBanner) {
-        heroBanner.src = `images/banner_plc_${selected}.jpg`;
-    }
-
     window.dispatchEvent(
         new CustomEvent("portfolioLanguageChanged", {
             detail: { language: selected }
