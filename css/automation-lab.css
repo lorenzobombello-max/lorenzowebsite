@@ -1,0 +1,76 @@
+.lab-main { overflow: hidden; }
+.lab-intro { padding-bottom: 1.5rem; }
+.lab-intro h1 { margin: .3rem 0 .8rem; font-size: clamp(2rem, 5vw, 4.4rem); }
+.lab-lead { max-width: 850px; color: var(--muted); font-size: 1.08rem; }
+.lab-workspace { padding-top: 1.2rem; }
+.lab-layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(300px, .8fr); gap: 1.2rem; align-items: start; }
+.lab-machine-panel, .diagnostic-card { border: 1px solid var(--line-strong); background: var(--surface-translucent); }
+.lab-machine-panel { border-radius: 18px; padding: 1rem; box-shadow: var(--shadow); }
+.lab-panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.lab-panel-heading h2 { margin: .15rem 0 0; }
+.lab-eyebrow { color: var(--amber); font: 700 .76rem/1.2 monospace; letter-spacing: .11em; }
+.stack-light { display: flex; flex-direction: column; gap: 4px; padding: 7px; border-radius: 7px; background: #111a1f; border: 1px solid #41505a; }
+.stack-light span { width: 18px; height: 11px; border-radius: 3px; opacity: .22; transition: opacity .18s, box-shadow .18s; }
+.stack-red { background: #ff3b30; }.stack-amber { background: #ffb020; }.stack-green { background: #31d06f; }
+.stack-light span.active { opacity: 1; box-shadow: 0 0 14px currentColor; }
+.cell-stage { position: relative; min-height: 440px; overflow: hidden; border-radius: 14px; border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(8,15,19,.98), rgba(18,29,34,.97)); isolation: isolate; }
+html[data-theme="light"] .cell-stage { background: linear-gradient(180deg,#dfe7eb,#aebdc4); }
+.cell-stage::before { content:""; position:absolute; inset:0; background-image: linear-gradient(rgba(245,166,35,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.08) 1px,transparent 1px); background-size:40px 40px; transform:perspective(500px) rotateX(58deg) scale(1.6); transform-origin:bottom; opacity:.42; }
+.safety-fence { position:absolute; inset:12px; border:1px dashed rgba(245,166,35,.35); border-radius:8px; pointer-events:none; }
+.conveyor-wrap { position:absolute; left:6%; right:34%; bottom:88px; height:106px; }
+.conveyor { position:absolute; left:0; right:0; top:25px; height:49px; border:5px solid #465159; border-radius:9px; background:#1c252a; box-shadow:0 12px 0 #303b42; overflow:visible; }
+.belt-lines { position:absolute; inset:0; background:repeating-linear-gradient(90deg,transparent 0 34px,rgba(255,255,255,.16) 35px 39px); }
+.conveyor.running .belt-lines { animation:beltMove .42s linear infinite; }
+@keyframes beltMove { to { background-position:39px 0; } }
+.product { position:absolute; left:2%; bottom:36px; width:55px; height:44px; border-radius:5px; display:grid; place-items:center; color:#1a1307; font:800 .72rem monospace; background:linear-gradient(145deg,#ffd176,#e49517); box-shadow:0 8px 15px rgba(0,0,0,.42); transform:translateX(var(--product-x,0px)); transition:transform .03s linear, opacity .2s; z-index:5; }
+.product::before { content:""; position:absolute; left:5px; right:5px; top:6px; height:2px; background:rgba(80,50,0,.35); }
+.sensor { position:absolute; bottom:80px; width:14px; height:38px; background:#6d7f89; border:2px solid #b8c4ca; border-radius:3px; z-index:6; }
+.sensor-left { left:12%; }.sensor-stop { right:13%; }
+.sensor small { position:absolute; top:42px; left:-9px; color:#c8d3d8; font:700 .64rem monospace; }
+.sensor-beam { position:absolute; left:12px; top:8px; width:0; height:2px; background:#ff3939; opacity:0; box-shadow:0 0 8px #ff3939; transition:width .15s,opacity .15s; }
+.sensor.active .sensor-beam { width:70px; opacity:1; }
+.motor-unit { position:absolute; left:-4px; bottom:5px; display:flex; align-items:center; gap:5px; color:#b9c5ca; font:700 .65rem monospace; }
+.motor-disc { width:28px; height:28px; border:4px solid #8e9da5; border-radius:50%; background:#263139; }
+.conveyor.running .motor-disc { animation:spin .55s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.robot-base { position:absolute; right:6%; bottom:74px; width:180px; height:240px; z-index:4; }
+.robot-pedestal { position:absolute; bottom:0; left:48px; width:85px; height:70px; border-radius:8px 8px 3px 3px; background:linear-gradient(135deg,#3a474e,#171e22); border:2px solid #70808a; display:grid; place-items:center; color:#dfe7ea; }
+.robot-pedestal span { color:#62db8b; font:700 .58rem monospace; }
+.robot-arm { position:absolute; left:84px; bottom:65px; width:40px; height:160px; transform-origin:20px 145px; transition:transform .7s cubic-bezier(.4,0,.2,1); }
+.robot-arm.picking { transform:rotate(-42deg); }.robot-arm.placing { transform:rotate(35deg); }
+.arm-segment { position:absolute; left:13px; width:16px; border-radius:8px; background:linear-gradient(90deg,#8999a1,#e2e8eb,#66777f); border:1px solid #b6c1c7; }
+.arm-lower { bottom:20px; height:92px; transform:rotate(-8deg); transform-origin:bottom; }.arm-upper { bottom:98px; height:74px; transform:rotate(24deg); transform-origin:bottom; }
+.robot-joint { position:absolute; width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#dce4e8,#53636b 65%,#1b2429); border:2px solid #a9b6bd; }
+.joint-main { left:3px; bottom:94px; }.joint-tip { left:8px; top:-4px; width:25px; height:25px; }
+.gripper { position:absolute; left:5px; top:-24px; width:30px; height:26px; }
+.gripper i { position:absolute; width:5px; height:25px; background:#c8d3d8; border-radius:2px; }.gripper i:first-child{left:4px;transform:rotate(-13deg)}.gripper i:last-child{right:4px;transform:rotate(13deg)}
+.pallet { position:absolute; right:3%; bottom:29px; width:120px; height:38px; border:3px solid #a46712; background:repeating-linear-gradient(90deg,#a46712 0 12px,#744608 12px 18px); color:#f7c565; display:flex; align-items:end; justify-content:center; font:700 .65rem monospace; }
+.pallet-slot { position:absolute; left:35px; bottom:34px; width:55px; height:44px; opacity:0; border-radius:5px; background:linear-gradient(145deg,#ffd176,#e49517); transition:opacity .25s; }
+.pallet-slot.loaded { opacity:1; }
+.guard-label { position:absolute; left:20px; top:18px; color:rgba(245,166,35,.72); font:700 .68rem monospace; letter-spacing:.08em; }
+.lab-controls { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; margin-top:1rem; }
+.lab-control { min-height:76px; border:1px solid var(--line-strong); border-radius:11px; background:var(--surface-strong); color:var(--paper); cursor:pointer; display:grid; grid-template-columns:22px 1fr; grid-template-rows:1fr 1fr; align-items:center; text-align:left; padding:.65rem; transition:transform .15s,border-color .15s; }
+.lab-control:hover { transform:translateY(-2px); border-color:var(--amber); }.lab-control:active { transform:translateY(1px); }
+.lab-control strong { font-size:.78rem; letter-spacing:.06em; }.lab-control small { color:var(--muted-2); font-family:monospace; }
+.control-lamp { grid-row:1/3; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,.4); background:#243038; }
+.start .control-lamp{background:#1fa559;box-shadow:0 0 10px rgba(31,165,89,.5)}.stop .control-lamp{background:#d83b36}.reset .control-lamp{background:#e3a11c}
+.estop-cap { grid-row:1/3; width:25px; height:25px; border-radius:50%; background:#e5342b; border:4px solid #f5c520; box-shadow:0 0 0 2px #7c1d18; }
+.emergency.engaged .estop-cap { transform:translateY(4px); box-shadow:0 0 0 2px #7c1d18,0 0 18px rgba(229,52,43,.8); }
+.lab-diagnostics { display:grid; gap:1rem; }
+.diagnostic-card { border-radius:14px; padding:1rem; }
+.diagnostic-card h3 { margin:0 0 .75rem; font-size:1rem; }
+.hmi-card { background:#071116; color:#eaf3f5; border-color:#40545d; box-shadow:inset 0 0 0 3px #141f24; }
+.hmi-top { display:flex; justify-content:space-between; padding-bottom:.55rem; border-bottom:1px solid #32454d; color:#76cde0; font:700 .7rem monospace; }
+.hmi-status-line { display:flex; justify-content:space-between; align-items:center; padding:.75rem 0; }.hmi-status-line span{color:#a9bbc2}.hmi-status-line strong{color:#59df8d; font:800 .82rem monospace;}
+.hmi-process { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }.hmi-process div{background:#0e1b21;border:1px solid #20343c;border-radius:6px;padding:.55rem}.hmi-process span{display:block;color:#7f969f;font-size:.68rem}.hmi-process strong{font:800 .9rem monospace;color:#f5b349}
+.hmi-message { margin-top:.65rem; min-height:58px; padding:.6rem; border-left:3px solid #36a8c8; background:#0b171d; color:#c5d5da; font-size:.78rem; }
+.io-table { display:grid; gap:.42rem; }.io-row { display:grid; grid-template-columns:12px 44px 1fr; gap:.45rem; align-items:center; font-size:.78rem; }.io-row code{color:var(--amber)}
+.io-led { width:10px; height:10px; border-radius:50%; background:#29343a; border:1px solid #66757d; }.io-row.active .io-led{background:#42df7b;box-shadow:0 0 9px #42df7b}.io-row.active .io-led.output{background:#ffb429;box-shadow:0 0 9px #ffb429}.io-separator{height:1px;background:var(--line);margin:.25rem 0}
+.ladder-card p { color:var(--muted); font-size:.77rem; margin:.6rem 0 0; }
+.ladder-rung { display:flex; align-items:center; min-height:66px; padding:.5rem; background:rgba(0,0,0,.16); border-radius:7px; color:var(--muted-2); font:700 .65rem monospace; }
+.rail { width:3px; height:50px; background:currentColor; margin-right:13px; }.contact,.coil{position:relative;border:1px solid currentColor;padding:.35rem .4rem;margin-right:18px}.contact::after{content:"";position:absolute;left:100%;top:50%;width:19px;border-top:1px solid currentColor}.coil{border-radius:50%;margin-left:auto;margin-right:0}.ladder-rung.active{color:#40d97a;text-shadow:0 0 8px rgba(64,217,122,.5)}
+.lab-explanation { padding-top:2rem; }
+@media (max-width:1050px){.lab-layout{grid-template-columns:1fr}.lab-diagnostics{grid-template-columns:repeat(3,1fr)}.cell-stage{min-height:410px}}
+@media (max-width:760px){.lab-diagnostics{grid-template-columns:1fr}.lab-controls{grid-template-columns:1fr 1fr}.cell-stage{min-height:390px}.conveyor-wrap{right:26%}.robot-base{right:1%;transform:scale(.82);transform-origin:bottom right}.pallet{display:none}}
+@media (max-width:480px){.lab-machine-panel{padding:.6rem}.cell-stage{min-height:330px}.conveyor-wrap{left:3%;right:18%;bottom:70px;transform:scale(.86);transform-origin:left bottom}.robot-base{transform:scale(.65)}.lab-control{min-height:68px;padding:.5rem}.lab-panel-heading h2{font-size:1.1rem}}
+@media (prefers-reduced-motion:reduce){.belt-lines,.motor-disc{animation:none!important}.robot-arm,.product{transition:none!important}}
