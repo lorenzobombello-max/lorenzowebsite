@@ -89,8 +89,8 @@ button:focus-visible {
   min-height: 72px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: flex-start;
+  gap: 0;
 }
 
 .brand {
@@ -108,6 +108,7 @@ button:focus-visible {
   gap: 26px;
   color: var(--muted);
   font-size: 0.94rem;
+  margin-left: auto;
 }
 
 .nav-links a { padding: 4px 0; border-bottom: 1px solid transparent; }
@@ -616,6 +617,9 @@ footer {
 
   .nav-links.open { display: flex; }
 
+  .language-switch { margin-left: auto; }
+  .theme-switch { margin-left: 8px; }
+
   .nav-toggle { display: inline-flex; }
 
   .contact-box { flex-direction: column; align-items: flex-start; }
@@ -984,7 +988,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-left: auto;
+  margin-left: 18px;
   padding: 0.3rem 0.55rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1008,7 +1012,7 @@ footer {
 .language-button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
 .language-button.active { color: var(--amber); text-shadow: 0 0 10px rgba(255, 184, 77, 0.35); }
 @media (max-width: 860px) {
-  .language-switch { margin-left: auto; margin-right: 0.45rem; }
+  .language-switch { margin-left: 14px; margin-right: 0.45rem; }
 }
 
 
@@ -1058,6 +1062,7 @@ html[data-theme="light"] .project-video { background: #111; }
 
 .theme-switch {
   display: inline-flex;
+  margin-left: 10px;
   align-items: center;
   gap: 0.12rem;
   padding: 0.25rem 0.35rem;
@@ -1117,4 +1122,10 @@ html[data-theme="light"] .project-video { background: #111; }
   .hero-banner img {
     transition: none;
   }
+}
+
+/* Compacte headergroepering op mobiel: taal en thema blijven rechts uitgelijnd. */
+@media (max-width: 720px) {
+  .language-switch { margin-left: auto; margin-right: 0.45rem; }
+  .theme-switch { margin-left: 8px; }
 }
