@@ -1,0 +1,37 @@
+{
+  "name": "lokale-ai-website-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "latest",
+    "@vitejs/plugin-react": "latest",
+    "clsx": "latest",
+    "framer-motion": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "^7.15.1",
+    "tailwind-merge": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-react-refresh": "latest",
+    "postcss": "latest",
+    "tailwindcss": "^3.4.17",
+    "typescript-eslint": "latest"
+  }
+}
