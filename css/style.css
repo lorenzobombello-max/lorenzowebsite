@@ -101,6 +101,33 @@ button:focus-visible {
 
 .brand span { color: var(--amber); }
 
+/* Persoonlijk LB-logo in de header. Beide varianten blijven in de HTML;
+   het actieve thema bepaalt welke versie zichtbaar is. */
+.brand-logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 92px;
+  min-width: 92px;
+  line-height: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.brand-logo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 68px;
+  object-fit: contain;
+}
+
+.brand-logo-light { display: none; }
+
+html[data-theme="light"] .brand-logo-dark { display: none; }
+html[data-theme="light"] .brand-logo-light { display: block; }
+
 .nav-links {
   display: flex;
   flex-wrap: wrap;
@@ -598,6 +625,13 @@ footer {
 }
 
 @media (max-width: 720px) {
+  .brand-logo {
+    width: 82px;
+    min-width: 82px;
+  }
+
+  .brand-logo-image { max-height: 62px; }
+
   .nav-links {
     position: absolute;
     top: 72px;
@@ -1317,68 +1351,4 @@ html[data-theme="light"] .certificate-viewer-stage {
   .certificate-viewer-shell { height: calc(100vh - 72px); padding: 8px; gap: 8px; }
   .certificate-viewer-toolbar { justify-content: space-between; }
   .certificate-viewer-status { order: 3; width: 100%; font-size: .8rem; }
-}
-
-
-/* -------------------- projectafbeeldingviewer: volledig passend in scherm -------------------- */
-.project-image-viewer-page {
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.project-image-viewer-shell {
-  height: 100%;
-  min-height: 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 10px;
-  padding: 10px clamp(10px, 2vw, 24px) 14px;
-}
-.project-image-viewer-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-}
-.project-image-viewer-stage {
-  min-width: 0;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr);
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(0, 0, 0, .22);
-  padding: 10px;
-}
-html[data-theme="light"] .project-image-viewer-stage {
-  background: #dfe3e6;
-}
-#projectViewerImage {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, .28);
-  background: #fff;
-}
-.project-image-viewer-error {
-  color: var(--muted);
-  text-align: center;
-}
-@media (max-width: 760px) {
-  .project-image-viewer-shell {
-    gap: 8px;
-    padding: 8px;
-  }
-  .project-image-viewer-stage {
-    padding: 6px;
-    border-radius: 10px;
-  }
 }
