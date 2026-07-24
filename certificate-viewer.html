@@ -17,29 +17,19 @@
 <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<header class="site-header">
-<div class="container nav">
-<a class="brand" href="index.html#home">Lorenzo Bombello<span> .</span></a>
-<nav aria-label="Hoofdnavigatie" class="nav-links" data-i18n-aria-en="Main navigation" data-i18n-aria-fr="Navigation principale" data-i18n-aria-nl="Hoofdnavigatie">
-<a href="index.html#home">Home</a>
-<a href="index.html#over-mij">Over mij</a>
-<a href="index.html#expertise">Expertise</a>
-<a href="index.html#projecten">Projecten</a>
-<a href="index.html#opleiding">Opleiding</a>
-<a href="index.html#cv">CV</a>
-<a aria-current="page" href="certificates.html">Certificaten</a>
-<a href="video.html">Video's</a>
-<a href="index.html#contact">Contact</a>
-</nav>
-<div aria-label="Taalkeuze" class="language-switch" data-i18n-aria-en="Language selection" data-i18n-aria-fr="Sélection de la langue" data-i18n-aria-label="Language selection" data-i18n-aria-nl="Taalkeuze" role="group"><button aria-pressed="true" class="language-button" data-lang="nl" type="button">NL</button><span aria-hidden="true">|</span><button aria-pressed="false" class="language-button" data-lang="en" type="button">EN</button><span aria-hidden="true">|</span><button aria-pressed="false" class="language-button" data-lang="fr" type="button">FR</button></div><div aria-label="Themakeuze" class="theme-switch" role="group"><button aria-label="Donker thema" aria-pressed="true" class="theme-button" data-theme-choice="dark" title="Donker thema" type="button">🌙<span class="sr-only">Donker</span></button><button aria-label="Licht thema" aria-pressed="false" class="theme-button" data-theme-choice="light" title="Licht thema" type="button">☀️<span class="sr-only">Licht</span></button><button aria-label="Automatisch thema" aria-pressed="false" class="theme-button" data-theme-choice="auto" title="Automatisch thema" type="button">◐<span class="sr-only">Auto</span></button></div><button aria-expanded="false" aria-label="Menu openen" class="nav-toggle" data-i18n-aria-en="Open menu" data-i18n-aria-fr="Ouvrir le menu" data-i18n-aria-nl="Menu openen">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-</button>
-</div>
-</header>
-<main class="certificate-viewer-page"><div class="certificate-viewer-shell"><div class="certificate-viewer-toolbar"><a class="button secondary small" data-i18n-en="← Back to certificates" data-i18n-fr="← Retour aux certificats" data-i18n-nl="← Terug naar certificaten" href="certificates.html">← Terug naar certificaten</a><p aria-live="polite" class="certificate-viewer-status" data-i18n-en="Full certificate — fitted to screen" data-i18n-fr="Certificat complet — ajusté à l’écran" data-i18n-nl="Volledig certificaat — passend in scherm" id="certificateViewerStatus">Volledig certificaat — passend in scherm</p><a class="button primary small" data-i18n-en="Open original" data-i18n-fr="Ouvrir l’original" data-i18n-nl="Origineel openen" href="#" id="openCertificateOriginal" rel="noopener" target="_blank">Origineel openen</a></div><div class="certificate-viewer-stage"><img alt="Certificaat" decoding="async" id="certificateViewerImage"/><div class="certificate-viewer-error" data-i18n-en="The certificate could not be loaded." data-i18n-fr="Le certificat n’a pas pu être chargé." data-i18n-nl="Het certificaat kon niet worden geladen." hidden="" id="certificateViewerError">Het certificaat kon niet worden geladen.</div></div></div></main>
+<main class="certificate-fit-viewer">
+  <div class="certificate-fit-toolbar">
+    <a class="certificate-fit-back" href="certificates.html" data-i18n-nl="← Terug" data-i18n-en="← Back" data-i18n-fr="← Retour">← Terug</a>
+    <span class="certificate-fit-status" data-i18n-nl="Volledig certificaat — passend in scherm" data-i18n-en="Full certificate — fitted to screen" data-i18n-fr="Certificat complet — ajusté à l’écran">Volledig certificaat — passend in scherm</span>
+    <a class="certificate-fit-original" href="#" id="openCertificateOriginal" target="_blank" rel="noopener" data-i18n-nl="Origineel openen" data-i18n-en="Open original" data-i18n-fr="Ouvrir l’original">Origineel openen</a>
+  </div>
+  <div class="certificate-fit-stage">
+    <img id="certificateViewerImage" alt="Certificaat" decoding="async" />
+    <div class="certificate-viewer-error" id="certificateViewerError" hidden data-i18n-nl="Het certificaat kon niet worden geladen." data-i18n-en="The certificate could not be loaded." data-i18n-fr="Le certificat n’a pas pu être chargé.">Het certificaat kon niet worden geladen.</div>
+  </div>
+</main>
 
-<script src="js/nav.js"></script>
 <script async="" data-goatcounter="https://lorenzobombello.goatcounter.com/count" src="//gc.zgo.at/count.js"></script>
 <script src="js/language.js"></script>
-<script src="js/theme.js"></script><script src="js/certificate-viewer.js"></script></body>
+<script src="js/certificate-viewer.js"></script></body>
 </html>
