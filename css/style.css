@@ -101,33 +101,6 @@ button:focus-visible {
 
 .brand span { color: var(--amber); }
 
-/* Persoonlijk LB-logo in de header. Beide varianten blijven in de HTML;
-   het actieve thema bepaalt welke versie zichtbaar is. */
-.brand-logo {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 92px;
-  min-width: 92px;
-  line-height: 0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.brand-logo-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 68px;
-  object-fit: contain;
-}
-
-.brand-logo-light { display: none; }
-
-html[data-theme="light"] .brand-logo-dark { display: none; }
-html[data-theme="light"] .brand-logo-light { display: block; }
-
 .nav-links {
   display: flex;
   flex-wrap: wrap;
@@ -625,13 +598,6 @@ footer {
 }
 
 @media (max-width: 720px) {
-  .brand-logo {
-    width: 82px;
-    min-width: 82px;
-  }
-
-  .brand-logo-image { max-height: 62px; }
-
   .nav-links {
     position: absolute;
     top: 72px;
