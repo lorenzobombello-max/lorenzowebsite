@@ -1,7 +1,9 @@
 (function () {
   "use strict";
   var STORAGE_KEY = "portfolio-theme";
-  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: light)") : null;
+  var AUTO_LIGHT_START_HOUR = 7;
+  var AUTO_DARK_START_HOUR = 19;
+  var autoTimer = null;
   var labels = {
     nl: { group: "Themakeuze", dark: "Donker thema", light: "Licht thema", auto: "Automatisch thema", darkText: "Donker", lightText: "Licht", autoText: "Auto" },
     en: { group: "Theme selection", dark: "Dark theme", light: "Light theme", auto: "Automatic theme", darkText: "Dark", lightText: "Light", autoText: "Auto" },
@@ -13,9 +15,20 @@
     try { value = localStorage.getItem(STORAGE_KEY) || "dark"; } catch (e) {}
     return ["dark", "light", "auto"].indexOf(value) !== -1 ? value : "dark";
   }
+  function automaticThemeByTime(date) {
+    var hour = (date || new Date()).getHours();
+    return hour >= AUTO_LIGHT_START_HOUR && hour < AUTO_DARK_START_HOUR ? "light" : "dark";
+  }
   function effectiveTheme(preference) {
     if (preference !== "auto") return preference;
-    return media && media.matches ? "light" : "dark";
+    return automaticThemeByTime();
+  }
+  function refreshAutomaticTheme() {
+    if (readPreference() === "auto") applyTheme("auto", false);
+  }
+  function startAutomaticThemeClock() {
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = window.setInterval(refreshAutomaticTheme, 60000);
   }
   function currentLanguage() {
     var lang = document.documentElement.lang || "nl";
@@ -57,11 +70,11 @@
       });
     });
     applyTheme(readPreference(), false);
+    startAutomaticThemeClock();
   });
   window.addEventListener("portfolioLanguageChanged", updateLabels);
-  if (media) {
-    var onChange = function () { if (readPreference() === "auto") applyTheme("auto", false); };
-    if (media.addEventListener) media.addEventListener("change", onChange);
-    else if (media.addListener) media.addListener(onChange);
-  }
+  window.addEventListener("focus", refreshAutomaticTheme);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) refreshAutomaticTheme();
+  });
 }());
