@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="noindex, nofollow" name="robots"/>
 <meta content="Diploma's en certificaten van Lorenzo Bombello: onderhoudstechnicus, PLC-modules, VCA en technische basisopleiding." data-i18n-content-en="Overview of technical qualifications and certificates obtained by Lorenzo Bombello." data-i18n-content-fr="Diplômes et certificats de Lorenzo Bombello : technicien de maintenance, modules API, VCA et formation technique de base." data-i18n-content-nl="Diploma's en certificaten van Lorenzo Bombello: onderhoudstechnicus, PLC-modules, VCA en technische basisopleiding." name="description"/>
 <title data-i18n-title-en="View certificate | Lorenzo Bombello" data-i18n-title-fr="Voir le certificat | Lorenzo Bombello" data-i18n-title-nl="Certificaat bekijken | Lorenzo Bombello">Certificaat bekijken | Lorenzo Bombello</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -16,16 +17,15 @@
 <script src="js/theme-init.js"></script>
 <link href="css/style.css" rel="stylesheet"/>
 </head>
-<body>
-<main class="certificate-fit-viewer">
-  <div class="certificate-fit-toolbar">
-    <a class="certificate-fit-back" href="certificates.html" data-i18n-nl="← Terug" data-i18n-en="← Back" data-i18n-fr="← Retour">← Terug</a>
-    <span class="certificate-fit-status" data-i18n-nl="Volledig certificaat — passend in scherm" data-i18n-en="Full certificate — fitted to screen" data-i18n-fr="Certificat complet — ajusté à l’écran">Volledig certificaat — passend in scherm</span>
-    <a class="certificate-fit-original" href="#" id="openCertificateOriginal" target="_blank" rel="noopener" data-i18n-nl="Origineel openen" data-i18n-en="Open original" data-i18n-fr="Ouvrir l’original">Origineel openen</a>
+<body class="certificate-viewer-page">
+<main class="certificate-viewer-shell">
+  <div class="certificate-viewer-toolbar">
+    <a class="button secondary small" href="certificates.html">← Terug naar certificaten</a>
+    <a class="button secondary small" href="#" id="openCertificateOriginal" target="_blank" rel="noopener">Origineel openen</a>
   </div>
-  <div class="certificate-fit-stage">
+  <div class="certificate-viewer-stage">
     <img id="certificateViewerImage" alt="Certificaat" decoding="async" />
-    <div class="certificate-viewer-error" id="certificateViewerError" hidden data-i18n-nl="Het certificaat kon niet worden geladen." data-i18n-en="The certificate could not be loaded." data-i18n-fr="Le certificat n’a pas pu être chargé.">Het certificaat kon niet worden geladen.</div>
+    <p class="certificate-viewer-error" id="certificateViewerError" hidden>Het certificaat kon niet worden geladen.</p>
   </div>
 </main>
 
