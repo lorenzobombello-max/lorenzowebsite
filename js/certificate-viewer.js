@@ -1,5 +1,30 @@
 (() => {
   'use strict';
+  const backLink = document.getElementById('backToCertificates');
+
+  if (backLink) {
+    backLink.addEventListener('click', (event) => {
+      const referrer = document.referrer;
+      let cameFromCertificates = false;
+
+      if (referrer) {
+        try {
+          const previousUrl = new URL(referrer);
+          cameFromCertificates =
+            previousUrl.origin === window.location.origin &&
+            /\/certificates\.html$/i.test(previousUrl.pathname);
+        } catch {
+          cameFromCertificates = false;
+        }
+      }
+
+      if (cameFromCertificates && window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  }
+
   const params = new URLSearchParams(window.location.search);
   const source = params.get('src') || '';
   const safeSource = /^certificates\/[A-Za-z0-9_().%\-]+\.(?:jpe?g|png|webp)$/i.test(source);
