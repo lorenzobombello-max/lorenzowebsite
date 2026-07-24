@@ -1,0 +1,34 @@
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const stage=$('#pneuStage'), piston=$('#piston'), spool=$('#valveSpool');
+  let mode='auto', running=false, estop=false, fault=false, extended=false, cycles=0, timers=[];
+  const text={
+    nl:{ready:'GEREED',running:'CYCLUS ACTIEF',stopped:'GESTOPT',fault:'STORING',estop:'NOODSTOP',start:'Druk op START om de automatische cyclus te beginnen.',extend:'Cilinder beweegt naar buiten. Y1 actief.',extended:'Uitpositie bevestigd door B3.1.',dwell:'Perspositie vasthouden.',retract:'Cilinder keert terug. Y2 actief.',complete:'Cyclus voltooid. Installatie gereed.',manual:'Handbediening actief.',sensorFault:'Sensorfout: eindpositie niet bevestigd. Reset vereist.',reset:'Storing gewist. Installatie gereed.',pressure:'Onvoldoende luchtdruk of veiligheidsketen onderbroken.'},
+    en:{ready:'READY',running:'CYCLE ACTIVE',stopped:'STOPPED',fault:'FAULT',estop:'EMERGENCY STOP',start:'Press START to begin the automatic cycle.',extend:'Cylinder extending. Y1 active.',extended:'Extended position confirmed by B3.1.',dwell:'Holding press position.',retract:'Cylinder retracting. Y2 active.',complete:'Cycle complete. Installation ready.',manual:'Manual control active.',sensorFault:'Sensor fault: end position not confirmed. Reset required.',reset:'Fault cleared. Installation ready.',pressure:'Insufficient air pressure or safety chain interrupted.'},
+    fr:{ready:'PRÊT',running:'CYCLE ACTIF',stopped:'ARRÊTÉ',fault:'DÉFAUT',estop:'ARRÊT URGENCE',start:'Appuyez sur MARCHE pour démarrer le cycle automatique.',extend:'Sortie du vérin. Y1 actif.',extended:'Position sortie confirmée par B3.1.',dwell:'Maintien en position de presse.',retract:'Rentrée du vérin. Y2 actif.',complete:'Cycle terminé. Installation prête.',manual:'Commande manuelle active.',sensorFault:'Défaut capteur : position non confirmée. Réarmement requis.',reset:'Défaut effacé. Installation prête.',pressure:'Pression insuffisante ou chaîne de sécurité interrompue.'}
+  };
+  const lang=()=>['nl','en','fr'].includes(document.documentElement.lang)?document.documentElement.lang:'nl';
+  const clearTimers=()=>{timers.forEach(clearTimeout);timers=[]};
+  const later=(fn,ms)=>timers.push(setTimeout(fn,ms));
+  const io=(name,on)=>{const el=document.querySelector(`[data-io="${name}"]`); if(el)el.classList.toggle('active',!!on)};
+  const step=(n)=>$$('.sequence li').forEach(el=>el.classList.toggle('active',Number(el.dataset.step)===n));
+  function setMessage(key){$('#hmiMessage').textContent=text[lang()][key]||key}
+  function pressure(on){$('#airFlow').style.width=on?'100%':'0';$('#pressureValue').textContent=on?'6.0':'0.0';$('#pressureText').textContent=(on?'6.0':'0.0')+' bar';$('#gaugeNeedle').style.transform=`rotate(${on?110:-120}deg)`;}
+  function setCylinder(out, valve){extended=out; stage.classList.toggle('extended',out); spool.classList.toggle('right',valve==='y2'); $$('[data-coil]').forEach(el=>el.classList.toggle('active',el.dataset.coil===valve)); io('y1',valve==='y1');io('y2',valve==='y2');io('retracted',!out&&!fault);io('extended',out&&!fault);$$('[data-sensor]').forEach(el=>el.classList.toggle('active',(el.dataset.sensor==='extended')?out&&!fault:!out&&!fault));$('#cylinderState').textContent=out?'UIT':'IN';}
+  function state(name){$('#machineState').textContent=text[lang()][name]||name; const good=!estop&&!fault; $('.tower .green').classList.toggle('active',good&&name!=='stopped');$('.tower .amber').classList.toggle('active',name==='running');$('.tower .red').classList.toggle('active',estop||fault);io('green',good);io('red',estop||fault);$('#safetyRung').classList.toggle('active',good);}
+  function stopAll(key='stopped'){clearTimers();running=false;setCylinder(extended,null);state(key);setMessage(key==='stopped'?'pressure':key);step(0)}
+  function cycle(){if(mode!=='auto'||running||estop||fault)return;running=true;pressure(true);state('running');step(1);setMessage('extend');setCylinder(true,'y1');later(()=>{if(fault){running=false;state('fault');setMessage('sensorFault');setCylinder(true,null);return;}step(2);setCylinder(true,null);setMessage('extended');later(()=>{step(3);setMessage('dwell');later(()=>{step(4);setMessage('retract');setCylinder(false,'y2');later(()=>{step(5);setCylinder(false,null);cycles++;$('#cycleCount').textContent=cycles;running=false;state('ready');setMessage('complete');later(()=>step(0),500)},900)},800)},350)},900)}
+  $('#startBtn').addEventListener('click',()=>{io('start',true);setTimeout(()=>io('start',false),180); if(mode==='auto')cycle(); else {pressure(true);state('ready');setMessage('manual')}});
+  $('#stopBtn').addEventListener('click',()=>{io('stop',true);setTimeout(()=>io('stop',false),180);stopAll('stopped')});
+  $('#resetBtn').addEventListener('click',()=>{fault=false;estop=false;$('#estopBtn').classList.remove('engaged');io('estop',false);pressure(true);setCylinder(false,null);state('ready');setMessage('reset');step(0)});
+  $('#estopBtn').addEventListener('click',()=>{estop=!estop;$('#estopBtn').classList.toggle('engaged',estop);io('estop',estop);if(estop){clearTimers();running=false;pressure(false);setCylinder(extended,null);state('estop');setMessage('pressure')}else{state(fault?'fault':'ready');setMessage(fault?'sensorFault':'reset')}});
+  $$('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{if(running)return;mode=btn.dataset.mode;$$('[data-mode]').forEach(b=>b.classList.toggle('active',b===btn));$('#modeValue').textContent=mode.toUpperCase();$('#manualControls').classList.toggle('visible',mode==='manual');setMessage(mode==='manual'?'manual':'start')}));
+  $('#extendBtn').addEventListener('click',()=>{if(mode==='manual'&&!estop&&!fault){pressure(true);setCylinder(true,'y1');state('running');setMessage('extend');later(()=>{setCylinder(true,null);state('ready');setMessage('extended')},850)}});
+  $('#retractBtn').addEventListener('click',()=>{if(mode==='manual'&&!estop){pressure(true);setCylinder(false,'y2');state('running');setMessage('retract');later(()=>{setCylinder(false,null);state('ready');setMessage('complete')},850)}});
+  $('#faultBtn').addEventListener('click',()=>{fault=true;clearTimers();running=false;setCylinder(extended,null);state('fault');setMessage('sensorFault')});
+  function translate(){const l=lang();$$('[data-pneu-nl]').forEach(el=>{const v=el.dataset['pneu'+l.charAt(0).toUpperCase()+l.slice(1)];if(v)el.textContent=v}); if(!running&&!fault&&!estop)setMessage(mode==='manual'?'manual':'start')}
+  new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  setInterval(()=>{$('#clock').textContent=new Date().toLocaleTimeString('nl-BE',{hour12:false})},1000);
+  pressure(true);setCylinder(false,null);state('ready');step(0);translate();
+})();
