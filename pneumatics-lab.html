@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Interactieve PLC- en pneumatica-demonstratie met cilinder, ventielen, sensoren en live I/O-diagnose."/>
+<title>Lorenzo Bombello | PLC & Pneumatics</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<script src="js/theme-init.js"></script>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/pneumatics-lab.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header"><div class="container nav">
+<a class="brand" href="index.html#home">Lorenzo Bombello <span></span><span>.<br/></span></a>
+<nav aria-label="Hoofdnavigatie" class="nav-links">
+<a href="index.html#home">Home</a><a href="index.html#over-mij">Over mij</a><a href="index.html#expertise">Expertise</a><a href="projecten.html">Projecten</a><a href="index.html#opleiding">Opleiding</a><a href="index.html#cv">CV</a><a href="certificates.html">Certificaten</a><a href="video.html">Video's</a><a href="index.html#contact">Contact</a>
+</nav>
+<div aria-label="Taalkeuze" class="language-switch" role="group"><button aria-pressed="true" class="language-button" data-lang="nl" type="button">NL</button><span>|</span><button aria-pressed="false" class="language-button" data-lang="en" type="button">EN</button><span>|</span><button aria-pressed="false" class="language-button" data-lang="fr" type="button">FR</button></div>
+<div aria-label="Themakeuze" class="theme-switch" role="group"><button class="theme-button" data-theme-choice="dark" type="button">🌙</button><button class="theme-button" data-theme-choice="light" type="button">☀️</button><button class="theme-button" data-theme-choice="auto" type="button">◐</button></div>
+<button aria-expanded="false" aria-label="Menu openen" class="nav-toggle"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg></button>
+</div></header>
+
+<main class="pneu-main">
+<section class="section pneu-intro"><div class="container">
+<p class="network-tag" data-pneu-nl="FB30 · Elektropneumatische werkpost" data-pneu-en="FB30 · Electropneumatic workstation" data-pneu-fr="FB30 · Poste électropneumatique">FB30 · Elektropneumatische werkpost</p>
+<h1 data-pneu-nl="PLC & Pneumatics" data-pneu-en="PLC & Pneumatics" data-pneu-fr="API & Pneumatique">PLC & Pneumatics</h1>
+<p class="pneu-lead" data-pneu-nl="Bedien een dubbelwerkende cilinder, volg de eindpositiesensoren en ontdek hoe interlocks en storingsdiagnose een veilige cyclus bewaken." data-pneu-en="Operate a double-acting cylinder, follow the end-position sensors and discover how interlocks and diagnostics protect a safe cycle." data-pneu-fr="Pilotez un vérin double effet, suivez les capteurs de fin de course et découvrez comment les interverrouillages sécurisent le cycle.">Bedien een dubbelwerkende cilinder, volg de eindpositiesensoren en ontdek hoe interlocks en storingsdiagnose een veilige cyclus bewaken.</p>
+</div></section>
+
+<section class="section"><div class="container pneu-layout">
+<div class="pneu-machine-panel">
+<div class="panel-heading"><div><span class="eyebrow">SIMATIC S7-1200 · CYLINDER STATION 03</span><h2 data-pneu-nl="Pneumatische perscyclus" data-pneu-en="Pneumatic press cycle" data-pneu-fr="Cycle de presse pneumatique">Pneumatische perscyclus</h2></div><div class="tower" aria-label="Signaaltoren"><i class="red"></i><i class="amber"></i><i class="green"></i></div></div>
+<div class="pneu-stage" id="pneuStage">
+<div class="pressure-line"><span data-pneu-nl="6,0 bar voeding" data-pneu-en="6.0 bar supply" data-pneu-fr="Alimentation 6,0 bar">6,0 bar voeding</span><b id="airFlow"></b></div>
+<div class="cylinder-unit">
+<div class="cylinder-body"><div class="piston" id="piston"></div><div class="rod" id="rod"></div></div>
+<div class="sensor retract-sensor" data-sensor="retracted"><span></span><small>B3.0</small></div>
+<div class="sensor extend-sensor" data-sensor="extended"><span></span><small>B3.1</small></div>
+<div class="workpiece" id="workpiece"><span>WP03</span></div>
+</div>
+<div class="valve-unit">
+<div class="valve-title">5/2 WAY VALVE · V3</div>
+<div class="valve-body"><div class="valve-spool" id="valveSpool"></div><span class="port p1">P</span><span class="port a">A</span><span class="port b">B</span><span class="port r1">R</span><span class="port r2">S</span></div>
+<div class="coil y1" data-coil="y1">Y1</div><div class="coil y2" data-coil="y2">Y2</div>
+</div>
+<div class="pressure-gauge"><div class="gauge-face"><i id="gaugeNeedle"></i><strong id="pressureValue">0.0</strong><small>bar</small></div></div>
+<div class="stage-label">STATION 03 · INTERLOCK ACTIVE</div>
+</div>
+<div class="mode-row"><button class="mode active" data-mode="auto" type="button">AUTO</button><button class="mode" data-mode="manual" type="button">MANUAL</button></div>
+<div class="pneu-controls">
+<button class="control start" id="startBtn" type="button"><span></span><strong>START</strong><small>I2.0</small></button>
+<button class="control stop" id="stopBtn" type="button"><span></span><strong>STOP</strong><small>I2.1</small></button>
+<button class="control reset" id="resetBtn" type="button"><span></span><strong>RESET</strong><small>I2.2</small></button>
+<button class="control emergency" id="estopBtn" type="button"><span></span><strong data-pneu-nl="NOODSTOP" data-pneu-en="EMERGENCY" data-pneu-fr="ARRÊT URGENCE">NOODSTOP</strong><small>I2.3</small></button>
+</div>
+<div class="manual-controls" id="manualControls"><button id="extendBtn" type="button" data-pneu-nl="Cilinder uit" data-pneu-en="Extend cylinder" data-pneu-fr="Sortir le vérin">Cilinder uit</button><button id="retractBtn" type="button" data-pneu-nl="Cilinder in" data-pneu-en="Retract cylinder" data-pneu-fr="Rentrer le vérin">Cilinder in</button><button id="faultBtn" type="button" data-pneu-nl="Simuleer sensorfout" data-pneu-en="Simulate sensor fault" data-pneu-fr="Simuler défaut capteur">Simuleer sensorfout</button></div>
+</div>
+
+<aside class="pneu-diagnostics">
+<section class="diag hmi"><div class="hmi-top"><span>WINCC UNIFIED</span><strong id="clock">00:00:00</strong></div><div class="status-line"><span data-pneu-nl="Machinestatus" data-pneu-en="Machine status" data-pneu-fr="État machine">Machinestatus</span><strong id="machineState">GEREED</strong></div><div class="metrics"><div><span data-pneu-nl="Modus" data-pneu-en="Mode" data-pneu-fr="Mode">Modus</span><strong id="modeValue">AUTO</strong></div><div><span data-pneu-nl="Cycli" data-pneu-en="Cycles" data-pneu-fr="Cycles">Cycli</span><strong id="cycleCount">0</strong></div><div><span data-pneu-nl="Cilinder" data-pneu-en="Cylinder" data-pneu-fr="Vérin">Cilinder</span><strong id="cylinderState">IN</strong></div><div><span data-pneu-nl="Druk" data-pneu-en="Pressure" data-pneu-fr="Pression">Druk</span><strong id="pressureText">0.0 bar</strong></div></div><div class="hmi-message" id="hmiMessage" aria-live="polite">Druk op START om de automatische cyclus te beginnen.</div></section>
+<section class="diag"><h3 data-pneu-nl="Live I/O-monitor" data-pneu-en="Live I/O monitor" data-pneu-fr="Moniteur E/S en direct">Live I/O-monitor</h3><div class="io-list">
+<div data-io="start"><i></i><code>I2.0</code><span>Start</span></div><div data-io="stop"><i></i><code>I2.1</code><span>Stop</span></div><div data-io="estop"><i></i><code>I2.3</code><span>Noodstop</span></div><div data-io="retracted"><i></i><code>I2.4</code><span data-pneu-nl="Cilinder in" data-pneu-en="Cylinder retracted" data-pneu-fr="Vérin rentré">Cilinder in</span></div><div data-io="extended"><i></i><code>I2.5</code><span data-pneu-nl="Cilinder uit" data-pneu-en="Cylinder extended" data-pneu-fr="Vérin sorti">Cilinder uit</span></div><hr/><div data-io="y1"><i class="out"></i><code>Q2.0</code><span data-pneu-nl="Ventiel Y1 uit" data-pneu-en="Valve Y1 extend" data-pneu-fr="Électrovanne Y1 sortie">Ventiel Y1 uit</span></div><div data-io="y2"><i class="out"></i><code>Q2.1</code><span data-pneu-nl="Ventiel Y2 in" data-pneu-en="Valve Y2 retract" data-pneu-fr="Électrovanne Y2 rentrée">Ventiel Y2 in</span></div><div data-io="green"><i class="out"></i><code>Q2.2</code><span data-pneu-nl="Groene lamp" data-pneu-en="Green lamp" data-pneu-fr="Voyant vert">Groene lamp</span></div><div data-io="red"><i class="out"></i><code>Q2.3</code><span data-pneu-nl="Storingslamp" data-pneu-en="Fault lamp" data-pneu-fr="Voyant défaut">Storingslamp</span></div>
+</div></section>
+<section class="diag"><h3 data-pneu-nl="Sequentiebewaking" data-pneu-en="Sequence monitoring" data-pneu-fr="Surveillance de séquence">Sequentiebewaking</h3><ol class="sequence"><li data-step="0" class="active">READY</li><li data-step="1">Y1 EXTEND</li><li data-step="2">B3.1 CONFIRM</li><li data-step="3">DWELL 0.8 s</li><li data-step="4">Y2 RETRACT</li><li data-step="5">B3.0 CONFIRM</li></ol></section>
+<section class="diag ladder"><h3>Safety interlock</h3><div class="rung" id="safetyRung"><span>|</span><b>[/ESTOP]</b><b>[PRESSURE_OK]</b><b>[SENSOR_OK]</b><em>(CYCLE_ENABLE)</em><span>|</span></div><p data-pneu-nl="De cyclus wordt alleen vrijgegeven wanneer noodstop, luchtdruk en sensorsignalen geldig zijn." data-pneu-en="The cycle is enabled only when emergency stop, air pressure and sensor signals are valid." data-pneu-fr="Le cycle n’est autorisé que si l’arrêt d’urgence, la pression et les capteurs sont valides.">De cyclus wordt alleen vrijgegeven wanneer noodstop, luchtdruk en sensorsignalen geldig zijn.</p></section>
+</aside>
+</div></section>
+</main>
+<footer><div class="container">© 2026 Lorenzo Bombello · Industriële automatisatie &amp; technisch onderhoud</div></footer>
+<script src="js/nav.js"></script><script src="js/language.js"></script><script src="js/theme.js"></script><script src="js/pneumatics-lab.js"></script>
+</body></html>
