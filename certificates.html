@@ -59,8 +59,53 @@
 <p data-i18n-nl="Een overzicht van mijn technische opleidingen, diploma's, certificaten en behaalde kwalificaties." data-i18n-in="An overview of my technical training, qualifications, certificates and achieved credentials." data-i18n-fr="Un aperçu de mes formations techniques, diplômes, certificats et qualifications obtenues.">Een overzicht van mijn technische opleidingen, diploma's, certificaten en behaalde kwalificaties.</p>
 </div>
 <div class="certificate-request-cta">
-<a class="button primary small" data-i18n-nl="Documenten aanvragen" data-i18n-in="Request documents" data-i18n-fr="Demander des documents" href="mailto:bombello.lorenzo1972@gmail.com" data-mailto-recipient="bombello.lorenzo1972@gmail.com" data-mail-subject-nl="Aanvraag geverifieerde documenten" data-mail-subject-in="Request for verified documents" data-mail-subject-fr="Demande de documents professionnels" data-mail-body-nl="Beste Lorenzo,&#10;&#10;Ik wens graag één of meerdere geverifieerde documenten aan te vragen.&#10;&#10;Om persoonsgegevens te beschermen en misbruik te voorkomen, worden diploma’s, certificaten en andere bewijsdocumenten niet rechtstreeks openbaar aangeboden via de website. Documenten worden uitsluitend na een gerichte aanvraag en passende controle gedeeld.&#10;&#10;Aangevraagde documenten:&#10;...&#10;&#10;Naam:&#10;Organisatie/bedrijf:&#10;Functie:&#10;Reden van aanvraag:&#10;&#10;Met vriendelijke groet," data-mail-body-in="Dear Lorenzo,&#10;&#10;I would like to request one or more verified documents.&#10;&#10;To protect personal data and prevent misuse, diplomas, certificates and other supporting documents are not made directly available to the public through the website. Documents are shared only following a specific request and appropriate verification.&#10;&#10;Requested document(s):&#10;...&#10;&#10;Name:&#10;Organisation/company:&#10;Position:&#10;Reason for request:&#10;&#10;Kind regards," data-mail-body-fr="Bonjour Lorenzo,&#13;&#10;&#13;&#10;Je souhaite demander un ou plusieurs documents professionnels.&#13;&#10;&#13;&#10;Pour la protection de vos informations personnelles et contre tout usage abusif, vos documents de formation, certificats et autres justificatifs ne sont pas directement accessibles au public sur le site Internet. Les documents seront transmis uniquement si la demande est professionnelle et si nous pouvons confirmer son origine.&#13;&#10;&#13;&#10;Documents requis :&#13;&#10;...&#13;&#10;&#13;&#10;Nom :&#13;&#10;Organisation/entreprise :&#13;&#10;Fonction :&#13;&#10;Motif de la demande :&#13;&#10;&#13;&#10;Cordialement,">Documenten aanvragen</a>
+<button class="button primary small" data-document-request-open data-i18n-nl="Documenten aanvragen" data-i18n-in="Request documents" data-i18n-fr="Demander des documents" type="button">Documenten aanvragen</button>
 </div>
+<dialog class="document-request-dialog" id="document-request-dialog" aria-labelledby="document-request-title">
+<div class="document-request-panel">
+<button class="document-request-close" data-document-request-close type="button" aria-label="Sluiten" data-i18n-aria-nl="Sluiten" data-i18n-aria-in="Close" data-i18n-aria-fr="Fermer">×</button>
+<h2 id="document-request-title" data-i18n-nl="Geverifieerde documenten aanvragen" data-i18n-in="Request verified documents" data-i18n-fr="Demander des documents vérifiés">Geverifieerde documenten aanvragen</h2>
+<p data-i18n-nl="Kies de gewenste documenten en motiveer kort je professionele aanvraag. Na controle ontvang je tijdelijke beveiligde downloadlinks." data-i18n-in="Select the required documents and briefly explain your professional request. After verification, you will receive temporary secure download links." data-i18n-fr="Sélectionnez les documents souhaités et expliquez brièvement votre demande professionnelle. Après vérification, vous recevrez des liens de téléchargement temporaires et sécurisés.">Kies de gewenste documenten en motiveer kort je professionele aanvraag. Na controle ontvang je tijdelijke beveiligde downloadlinks.</p>
+<form id="document-request-form" novalidate>
+<div class="document-request-fields">
+<label><span data-i18n-nl="Naam *" data-i18n-in="Name *" data-i18n-fr="Nom *">Naam *</span><input autocomplete="name" maxlength="100" minlength="2" name="name" required type="text"></label>
+<label><span data-i18n-nl="E-mailadres *" data-i18n-in="Email address *" data-i18n-fr="Adresse e-mail *">E-mailadres *</span><input autocomplete="email" maxlength="254" name="email" required type="email"></label>
+<label><span data-i18n-nl="Organisatie/bedrijf" data-i18n-in="Organisation/company" data-i18n-fr="Organisation/entreprise">Organisatie/bedrijf</span><input autocomplete="organization" maxlength="150" name="organization" type="text"></label>
+<label><span data-i18n-nl="Functie" data-i18n-in="Job title" data-i18n-fr="Fonction">Functie</span><input autocomplete="organization-title" maxlength="150" name="jobTitle" type="text"></label>
+</div>
+<fieldset class="document-request-options">
+<legend data-i18n-nl="Gewenste documenten *" data-i18n-in="Requested documents *" data-i18n-fr="Documents souhaités *">Gewenste documenten *</legend>
+<h3>CV</h3>
+<label><input name="requestedDocuments" type="checkbox" value="cv/CV_Lorenzo_Bombello_NL.pdf"> CV — Nederlands</label>
+<label><input name="requestedDocuments" type="checkbox" value="cv/CV_Lorenzo_Bombello_EN.pdf"> CV — English</label>
+<label><input name="requestedDocuments" type="checkbox" value="cv/CV_Lorenzo_Bombello_FR.pdf"> CV — Français</label>
+<h3 data-i18n-nl="Opleidingen en certificaten" data-i18n-in="Training and certificates" data-i18n-fr="Formations et certificats">Opleidingen en certificaten</h3>
+<label><input name="requestedDocuments" type="checkbox" value="documents/plc-module-1.pdf"> Basis PLC en OP</label>
+<label><input name="requestedDocuments" type="checkbox" value="certificates/2026_Certificaat_Gestructureerd_Programmeren_PLC.jpg"> Gestructureerd programmeren PLC</label>
+<label><input name="requestedDocuments" type="checkbox" value="certificates/2026_Certificaat_Gestructureerd_Programmeren_OP.jpg"> Gestructureerd programmeren OP</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/diploma-onderhoudstechnicus.pdf"> Diploma Onderhoudstechnicus</label>
+<label><input name="requestedDocuments" type="checkbox" value="certificates/2025_Certificaat_Machine_Operator_Volvo_Cars.jpg"> Machine Operator</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2026_VCA_Basis.pdf"> VCA Basis</label>
+<label><input name="requestedDocuments" type="checkbox" value="certificates/2025_Certificaat_ICT.jpg"> ICT-certificaat</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2007_Deelcertificaat_Basis_Elektriciteit_6919.pdf"> Basis Elektriciteit</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2007_Deelcertificaat_Basis_Metaal_6920.pdf"> Basis Metaal</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_1.pdf"> Elektrische Opbouwinstallaties 1</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2008_Deelcertificaat_Elektrische_Opbouwinstallaties_2.pdf"> Elektrische Opbouwinstallaties 2</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2008_Certificaat_Hersteller_Witgoed_BSO03.pdf"> Hersteller Witgoed BSO03</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2008_Basiskennis_Bedrijfsbeheer.pdf"> Basiskennis Bedrijfsbeheer</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/2008_Getuigschrift_Bedrijfsbeheer_KO_TSO3.pdf"> Bedrijfsbeheer KO TSO3</label>
+<label><input name="requestedDocuments" type="checkbox" value="documents/Lorenzo_Bombello_Portfolio_2026.pdf"> Professioneel Portfolio 2026</label>
+</fieldset>
+<label class="document-request-reason"><span data-i18n-nl="Reden van aanvraag *" data-i18n-in="Reason for request *" data-i18n-fr="Motif de la demande *">Reden van aanvraag *</span><textarea maxlength="2000" minlength="5" name="reason" required rows="4"></textarea></label>
+<div class="document-request-trap" aria-hidden="true"><label>Website<input autocomplete="off" name="website" tabindex="-1" type="text"></label></div>
+<p class="document-request-status" id="document-request-status" aria-live="polite"></p>
+<div class="document-request-actions">
+<button class="button secondary small" data-document-request-close data-i18n-nl="Annuleren" data-i18n-in="Cancel" data-i18n-fr="Annuler" type="button">Annuleren</button>
+<button class="button primary small" data-i18n-nl="Aanvraag verzenden" data-i18n-in="Send request" data-i18n-fr="Envoyer la demande" type="submit">Aanvraag verzenden</button>
+</div>
+</form>
+</div>
+</dialog>
 <section class="certificate-section">
 <h2 data-i18n-nl="PLC &amp; industriële automatisatie" data-i18n-in="PLC &amp; industrial automation" data-i18n-fr="API &amp; automatisation industrielle">PLC &amp; industriële automatisatie</h2>
 <div class="certificate-grid">
@@ -191,9 +236,9 @@
 <script src="js/nav.js"></script>
 <script>if ((location.protocol === "http:" || location.protocol === "https:") && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") { var gc = document.createElement("script"); gc.async = true; gc.dataset.goatcounter = "https://lorenzobombello.goatcounter.com/count"; gc.src = "//gc.zgo.at/count.js"; document.head.appendChild(gc); }</script>
 <script src="js/language.js"></script>
+<script src="js/document-request.js"></script>
 <script src="js/theme.js"></script></body>
 </html>
-
 
 
 
