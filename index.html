@@ -250,7 +250,7 @@ naar onderhoud, PLC-programmering, HMI-ontwikkeling en industriële netwerken.
 </div>
 <div class="cv-card">
 <span><span class="lang">Français</span><span class="name">CV — FR</span></span>
-<a class="button secondary small" href="mailto:bombello.lorenzo1972@gmail.com?subject=Demande%20de%20CV%20en%20fran%C3%A7ais&amp;body=Cher%20Lorenzo%2C%0D%0A%0D%0AJe%20souhaiterais%20recevoir%20votre%20CV%20en%20fran%C3%A7ais.%0D%0A%0D%0AAfin%20de%20prot%C3%A9ger%20les%20donn%C3%A9es%20personnelles%20et%20d%E2%80%99%C3%A9viter%20toute%20utilisation%20abusive%2C%20votre%20CV%20complet%20n%E2%80%99est%20pas%20directement%20accessible%20au%20public%20sur%20le%20site%20Internet.%20Le%20CV%20est%20communiqu%C3%A9%20uniquement%20apr%C3%A8s%20une%20demande%20cibl%C3%A9e%20et%20une%20v%C3%A9rification%20appropri%C3%A9e.%0D%0A%0D%0ANom%20%3A%0D%0AOrganisation%2Fentreprise%20%3A%0D%0AFonction%20%3A%0D%0AMotif%20de%20la%20demande%20%3A%0D%0A%0D%0ACordialement%2C">CV aanvragen</a>
+<a class="button secondary small" id="cv-request-fr" href="mailto:bombello.lorenzo1972@gmail.com?subject=Demande%20de%20CV%20en%20fran%C3%A7ais&amp;body=Cher%20Lorenzo%2C%0D%0A%0D%0AJe%20souhaiterais%20recevoir%20votre%20CV%20en%20fran%C3%A7ais.%0D%0A%0D%0AAfin%20de%20prot%C3%A9ger%20les%20donn%C3%A9es%20personnelles%20et%20d%E2%80%99%C3%A9viter%20toute%20utilisation%20abusive%2C%20votre%20CV%20complet%20n%E2%80%99est%20pas%20directement%20accessible%20au%20public%20sur%20le%20site%20Internet.%20Le%20CV%20est%20communiqu%C3%A9%20uniquement%20apr%C3%A8s%20une%20demande%20cibl%C3%A9e%20et%20une%20v%C3%A9rification%20appropri%C3%A9e.%0D%0A%0D%0ANom%20%3A%0D%0AOrganisation%2Fentreprise%20%3A%0D%0AFonction%20%3A%0D%0AMotif%20de%20la%20demande%20%3A%0D%0A%0D%0ACordialement%2C">CV aanvragen</a>
 </div>
 <div class="cv-card">
 <span><span class="lang">English</span><span class="name">CV — EN</span></span>
@@ -292,10 +292,15 @@ Stuur een e-mail
 © 2026 Lorenzo Bombello · Industriële automatisatie &amp; technisch onderhoud
 </div>
 </footer>
+<script>
+document.getElementById("cv-request-fr").addEventListener("click", function (event) {
+  event.preventDefault();
+  window.location.href = "mailto:bombello.lorenzo1972@gmail.com?subject=Demande%20de%20CV%20en%20fran%E7ais&body=Cher%20Lorenzo%2C%0D%0A%0D%0AJe%20souhaiterais%20recevoir%20votre%20CV%20en%20fran%E7ais.%0D%0A%0D%0AAfin%20de%20prot%E9ger%20les%20donn%E9es%20personnelles%20et%20d%92%E9viter%20toute%20utilisation%20abusive%2C%20votre%20CV%20complet%20n%92est%20pas%20directement%20accessible%20au%20public%20sur%20le%20site%20Internet.%20Le%20CV%20est%20communiqu%E9%20uniquement%20apr%E8s%20une%20demande%20cibl%E9e%20et%20une%20v%E9rification%20appropri%E9e.%0D%0A%0D%0ANom%20%3A%0D%0AOrganisation%2Fentreprise%20%3A%0D%0AFonction%20%3A%0D%0AMotif%20de%20la%20demande%20%3A%0D%0A%0D%0ACordialement%2C";
+});
+</script>
 <script src="js/nav.js"></script>
 <script>if ((location.protocol === "http:" || location.protocol === "https:") && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") { var gc = document.createElement("script"); gc.async = true; gc.dataset.goatcounter = "https://lorenzobombello.goatcounter.com/count"; gc.src = "//gc.zgo.at/count.js"; document.head.appendChild(gc); }</script>
 <script src="js/language.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/banner.js"></script></body>
 </html>
-
