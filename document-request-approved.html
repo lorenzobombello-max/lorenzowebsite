@@ -71,20 +71,19 @@
         line-height: 1.7;
       }
 
-      a {
-        display: inline-block;
-        margin-top: 30px;
-        padding: 12px 20px;
-        border-radius: 9px;
-        background: var(--accent);
-        color: #ffffff;
-        font-weight: 700;
-        text-decoration: none;
+      .close-status {
+        margin-top: 24px;
+        font-size: 0.98rem;
       }
 
-      a:hover,
-      a:focus-visible {
-        filter: brightness(0.92);
+      .close-status strong {
+        color: var(--text);
+      }
+
+      .close-fallback {
+        display: none;
+        margin-top: 10px;
+        font-size: 0.92rem;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -106,7 +105,38 @@
         De tijdelijke beveiligde downloadlinks zijn succesvol naar de
         aanvrager verzonden.
       </p>
-      <a href="certificates.html">Terug naar de certificatenpagina</a>
+      <p class="close-status" id="close-status" aria-live="polite">
+        Dit tabblad sluit automatisch over
+        <strong id="close-countdown">5</strong> seconden.
+      </p>
+      <p class="close-fallback" id="close-fallback">
+        De aanvraag is verwerkt. Sluit dit tabblad met Ctrl+W om terug te keren
+        naar je e-mail.
+      </p>
     </main>
+    <script>
+      (() => {
+        const countdown = document.getElementById("close-countdown");
+        const closeStatus = document.getElementById("close-status");
+        const closeFallback = document.getElementById("close-fallback");
+        let remaining = 5;
+
+        const timer = window.setInterval(() => {
+          remaining -= 1;
+          countdown.textContent = String(Math.max(remaining, 0));
+
+          if (remaining === 0) {
+            window.clearInterval(timer);
+            closeStatus.textContent = "Dit tabblad wordt gesloten…";
+            window.close();
+
+            window.setTimeout(() => {
+              closeStatus.style.display = "none";
+              closeFallback.style.display = "block";
+            }, 500);
+          }
+        }, 1000);
+      })();
+    </script>
   </body>
 </html>
