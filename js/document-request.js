@@ -6,6 +6,7 @@
   var dialog = document.getElementById("document-request-dialog");
   var form = document.getElementById("document-request-form");
   var status = document.getElementById("document-request-status");
+  var closeTimer = null;
 
   if (!dialog || !form || !status) return;
 
@@ -16,6 +17,7 @@
       sending: "Aanvraag wordt veilig verzonden…",
       success:
         "Je aanvraag is ontvangen. Na controle ontvang je de tijdelijke downloadlinks per e-mail.",
+      closes: "Dit venster sluit automatisch over {seconds} seconden.",
       error:
         "De aanvraag kon niet worden verzonden. Probeer het later opnieuw.",
     },
@@ -25,6 +27,7 @@
       sending: "Your request is being sent securely…",
       success:
         "Your request has been received. After verification, you will receive the temporary download links by email.",
+      closes: "This window will close automatically in {seconds} seconds.",
       error: "The request could not be sent. Please try again later.",
     },
     fr: {
@@ -33,6 +36,8 @@
       sending: "Votre demande est envoyée de manière sécurisée…",
       success:
         "Votre demande a été reçue. Après vérification, vous recevrez les liens de téléchargement temporaires par e-mail.",
+      closes:
+        "Cette fenêtre se fermera automatiquement dans {seconds} secondes.",
       error:
         "La demande n’a pas pu être envoyée. Veuillez réessayer plus tard.",
     },
@@ -53,7 +58,23 @@
     status.className = "document-request-status" + (type ? " is-" + type : "");
   }
 
+  function clearCloseTimer() {
+    if (closeTimer !== null) {
+      window.clearInterval(closeTimer);
+      closeTimer = null;
+    }
+  }
+
+  function successMessage(seconds) {
+    return (
+      text("success") +
+      " " +
+      text("closes").replace("{seconds}", String(seconds))
+    );
+  }
+
   function openDialog() {
+    clearCloseTimer();
     setStatus("", "");
     if (typeof dialog.showModal === "function") {
       dialog.showModal();
@@ -65,6 +86,7 @@
   }
 
   function closeDialog() {
+    clearCloseTimer();
     if (typeof dialog.close === "function") {
       dialog.close();
     } else {
@@ -135,7 +157,19 @@
       if (!response.ok) throw new Error("Request failed");
 
       form.reset();
-      setStatus(text("success"), "success");
+      var secondsRemaining = 10;
+      setStatus(successMessage(secondsRemaining), "success");
+
+      closeTimer = window.setInterval(function () {
+        secondsRemaining -= 1;
+
+        if (secondsRemaining <= 0) {
+          closeDialog();
+          return;
+        }
+
+        setStatus(successMessage(secondsRemaining), "success");
+      }, 1000);
     } catch (error) {
       console.error("Document request failed:", error);
       setStatus(text("error"), "error");
