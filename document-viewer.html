@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Beveiligd document | Lorenzo Bombello</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #0e1319;
+      --surface: #171e26;
+      --surface-soft: #202a35;
+      --border: rgba(255,255,255,.14);
+      --text: #f3f6f8;
+      --muted: #b7c0c9;
+      --accent: #e7eef5;
+      --accent-text: #111820;
+      --danger: #ffb5b5;
+      --shadow: 0 22px 65px rgba(0,0,0,.38);
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body {
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(87,111,135,.28), transparent 45%),
+        var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 72px;
+      padding: 14px clamp(18px, 4vw, 54px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(14,19,25,.82);
+      backdrop-filter: blur(14px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 38px; height: 38px; border-radius: 8px; }
+    .brand-text { min-width: 0; }
+    .brand strong, .brand span { display: block; }
+    .brand strong { font-size: 15px; letter-spacing: .02em; }
+    .brand span { margin-top: 2px; color: var(--muted); font-size: 12px; }
+    .actions { display: none; gap: 10px; }
+    .button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      padding: 10px 17px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, opacity .16s ease;
+    }
+    .button:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.35); }
+    .button.primary { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+    .button:disabled { cursor: not-allowed; opacity: .45; transform: none; }
+    main {
+      width: min(1380px, 100%);
+      flex: 1;
+      margin: 0 auto;
+      padding: clamp(18px, 3vw, 38px);
+    }
+    .gate {
+      width: min(650px, 100%);
+      margin: clamp(42px, 9vh, 100px) auto;
+      padding: clamp(26px, 5vw, 48px);
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(32,42,53,.96), rgba(23,30,38,.96));
+      box-shadow: var(--shadow);
+    }
+    .security-mark {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 20px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      font-size: 27px;
+      background: rgba(255,255,255,.06);
+    }
+    h1 { margin: 0 0 12px; font-size: clamp(25px, 4vw, 38px); line-height: 1.15; }
+    .gate p { margin: 0 auto 24px; max-width: 52ch; color: var(--muted); line-height: 1.65; }
+    .notice { margin-top: 18px !important; font-size: 13px; }
+    .error { color: var(--danger) !important; }
+    .viewer {
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: calc(100vh - 150px);
+    }
+    .viewer img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 155px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .viewer iframe {
+      width: 100%;
+      height: calc(100vh - 150px);
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .loading .button.primary { pointer-events: none; opacity: .6; }
+    footer { padding: 14px 24px 22px; color: var(--muted); text-align: center; font-size: 12px; }
+    @media (max-width: 680px) {
+      .topbar { align-items: stretch; flex-direction: column; }
+      .actions { width: 100%; }
+      .actions .button { flex: 1; }
+      main { padding: 14px; }
+      .gate { margin: 24px auto; }
+      .viewer img, .viewer iframe { max-height: calc(100vh - 190px); height: calc(100vh - 190px); }
+    }
+    @media print {
+      .topbar, .gate, footer { display: none !important; }
+      body, main, .viewer { display: block !important; margin: 0; padding: 0; background: #fff; }
+      .viewer img { width: 100%; max-width: 100%; max-height: none; box-shadow: none; }
+      .viewer iframe { width: 100%; height: 100vh; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="images/logo-icon-dark.png" alt="LB">
+      <div class="brand-text">
+        <strong>Lorenzo Bombello</strong>
+        <span id="secureLabel">Beveiligde documentweergave</span>
+      </div>
+    </div>
+    <div class="actions" id="actions">
+      <button class="button" id="printButton" type="button">Afdrukken</button>
+      <button class="button primary" id="downloadButton" type="button">Downloaden</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="gate" id="gate">
+      <div class="security-mark" aria-hidden="true">🔒</div>
+      <h1 id="heading">Beveiligd document</h1>
+      <p id="intro">Deze link kan slechts één keer worden gebruikt. Open het document pas wanneer je klaar bent om het te bekijken, af te drukken of te downloaden.</p>
+      <button class="button primary" id="openButton" type="button">Document één keer openen</button>
+      <p class="notice" id="notice">Na het openen blijft het document in dit browservenster beschikbaar zolang je deze pagina niet sluit.</p>
+    </section>
+    <section class="viewer" id="viewer" aria-live="polite"></section>
+  </main>
+
+  <footer>© 2026 Lorenzo Bombello · Beveiligde documenttoegang</footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const ENDPOINT = "https://nqkgnsxjdlkvrzlemdaz.supabase.co/functions/v1/download-document";
+      const query = new URLSearchParams(window.location.search);
+      const language = ["nl", "fr", "en"].includes(query.get("lang")) ? query.get("lang") : "nl";
+      const tokenParams = new URLSearchParams();
+      ["id", "file", "expires", "signature"].forEach((key) => tokenParams.set(key, query.get(key) || ""));
+
+      const translations = {
+        nl: {
+          secure: "Beveiligde documentweergave",
+          heading: "Beveiligd document",
+          intro: "Deze link kan slechts één keer worden gebruikt. Open het document pas wanneer je klaar bent om het te bekijken, af te drukken of te downloaden.",
+          open: "Document één keer openen",
+          loading: "Document wordt veilig geladen…",
+          notice: "Na het openen blijft het document in dit browservenster beschikbaar zolang je deze pagina niet sluit.",
+          print: "Afdrukken",
+          download: "Downloaden",
+          invalid: "Deze beveiligde link is onvolledig of ongeldig.",
+          failed: "Het document kon niet worden geopend.",
+          consumed: "Deze link werd al gebruikt of is niet meer geldig."
+        },
+        fr: {
+          secure: "Affichage sécurisé du document",
+          heading: "Document sécurisé",
+          intro: "Ce lien ne peut être utilisé qu’une seule fois. Ouvrez le document uniquement lorsque vous êtes prêt à le consulter, l’imprimer ou le télécharger.",
+          open: "Ouvrir le document une fois",
+          loading: "Chargement sécurisé du document…",
+          notice: "Après ouverture, le document reste disponible dans cette fenêtre tant que vous ne fermez pas la page.",
+          print: "Imprimer",
+          download: "Télécharger",
+          invalid: "Ce lien sécurisé est incomplet ou invalide.",
+          failed: "Le document n’a pas pu être ouvert.",
+          consumed: "Ce lien a déjà été utilisé ou n’est plus valide."
+        },
+        en: {
+          secure: "Secure document viewer",
+          heading: "Secure document",
+          intro: "This link can be used only once. Open the document only when you are ready to view, print, or download it.",
+          open: "Open document once",
+          loading: "Loading document securely…",
+          notice: "After opening, the document remains available in this browser tab until you close the page.",
+          print: "Print",
+          download: "Download",
+          invalid: "This secure link is incomplete or invalid.",
+          failed: "The document could not be opened.",
+          consumed: "This link has already been used or is no longer valid."
+        }
+      };
+      const t = translations[language];
+      document.documentElement.lang = language;
+      document.getElementById("secureLabel").textContent = t.secure;
+      document.getElementById("heading").textContent = t.heading;
+      document.getElementById("intro").textContent = t.intro;
+      document.getElementById("openButton").textContent = t.open;
+      document.getElementById("notice").textContent = t.notice;
+      document.getElementById("printButton").textContent = t.print;
+      document.getElementById("downloadButton").textContent = t.download;
+
+      // Remove the signed parameters from the visible address bar. They remain
+      // only in memory for the explicit one-time open action below.
+      history.replaceState(null, "", window.location.pathname);
+
+      const gate = document.getElementById("gate");
+      const openButton = document.getElementById("openButton");
+      const notice = document.getElementById("notice");
+      const viewer = document.getElementById("viewer");
+      const actions = document.getElementById("actions");
+      const printButton = document.getElementById("printButton");
+      const downloadButton = document.getElementById("downloadButton");
+      let objectUrl = "";
+      let filename = "document";
+      let contentType = "";
+
+      function showError(message) {
+        gate.classList.remove("loading");
+        openButton.disabled = true;
+        notice.textContent = message;
+        notice.classList.add("error");
+      }
+
+      function filenameFromDisposition(header) {
+        if (!header) return "document";
+        const utf = header.match(/filename\*=UTF-8''([^;]+)/i);
+        if (utf) {
+          try { return decodeURIComponent(utf[1]); } catch (_) { /* ignore */ }
+        }
+        const basic = header.match(/filename="([^"]+)"/i);
+        return basic ? basic[1] : "document";
+      }
+
+      const required = ["id", "file", "expires", "signature"];
+      if (required.some((key) => !tokenParams.get(key))) {
+        showError(t.invalid);
+        return;
+      }
+
+      openButton.addEventListener("click", async () => {
+        openButton.disabled = true;
+        openButton.textContent = t.loading;
+        gate.classList.add("loading");
+
+        try {
+          const response = await fetch(`${ENDPOINT}?${tokenParams.toString()}`, {
+            method: "GET",
+            mode: "cors",
+            cache: "no-store",
+            credentials: "omit",
+            referrerPolicy: "no-referrer"
+          });
+
+          if (!response.ok) {
+            const message = await response.text();
+            throw new Error(response.status === 410 ? t.consumed : (message || t.failed));
+          }
+
+          const blob = await response.blob();
+          contentType = response.headers.get("Content-Type") || blob.type || "application/octet-stream";
+          filename = filenameFromDisposition(response.headers.get("Content-Disposition"));
+          objectUrl = URL.createObjectURL(blob);
+
+          if (contentType === "application/pdf") {
+            const frame = document.createElement("iframe");
+            frame.src = objectUrl;
+            frame.title = filename;
+            viewer.appendChild(frame);
+          } else if (contentType.startsWith("image/")) {
+            const image = document.createElement("img");
+            image.src = objectUrl;
+            image.alt = filename;
+            viewer.appendChild(image);
+          } else {
+            const link = document.createElement("a");
+            link.className = "button primary";
+            link.href = objectUrl;
+            link.download = filename;
+            link.textContent = t.download;
+            viewer.appendChild(link);
+          }
+
+          gate.style.display = "none";
+          viewer.style.display = "flex";
+          actions.style.display = "flex";
+          document.title = `${filename} | Lorenzo Bombello`;
+        } catch (error) {
+          console.error(error);
+          showError(error instanceof Error ? error.message : t.failed);
+        }
+      }, { once: true });
+
+      downloadButton.addEventListener("click", () => {
+        if (!objectUrl) return;
+        const link = document.createElement("a");
+        link.href = objectUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+
+      printButton.addEventListener("click", () => window.print());
+      window.addEventListener("pagehide", () => {
+        if (objectUrl) URL.revokeObjectURL(objectUrl);
+      });
+    })();
+  </script>
+</body>
+</html>
