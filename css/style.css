@@ -1882,3 +1882,105 @@ footer .legal-links { margin-top: .45rem; }
 .legal-footer a:hover, .legal-footer a:focus-visible, footer .legal-links a:hover, footer .legal-links a:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: .2em; }
 html[data-theme="light"] .legal-card, body.light-theme .legal-card { background: rgba(255,255,255,.86); }
 @media (max-width: 700px) { .legal-hero { padding-top: 2.5rem; } .legal-content { padding-top: 1.5rem; } .legal-footer { align-items: flex-start; flex-direction: column; } }
+
+
+/* -------------------- cookie consent -------------------- */
+.cookie-consent {
+  position: fixed;
+  right: 24px;
+  bottom: 36px;
+  z-index: 1000;
+  width: min(380px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  color: var(--paper);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.cookie-consent[hidden] { display: none; }
+.cookie-consent.is-visible { opacity: 1; transform: translateY(0); }
+.cookie-consent__heading { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cookie-consent__heading h2 { margin: 0; font-size: 1.2rem; }
+.cookie-consent__icon { font-size: 1.35rem; line-height: 1; }
+.cookie-consent p { margin: 0 0 16px; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.cookie-consent__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.cookie-consent__actions .button {
+  flex: 1 1 140px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cookie-consent__privacy {
+  position: relative;
+  display: inline-block;
+  color: var(--amber);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.cookie-consent__privacy::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+.cookie-consent__privacy:hover::after,
+.cookie-consent__privacy:focus-visible::after { transform: scaleX(1); }
+.cookie-settings-link {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.cookie-settings-link:hover { color: var(--amber); }
+
+/* Definitieve footerhandtekening */
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: .75rem 1.5rem;
+}
+.site-footer-signature { display: grid; gap: .3rem; }
+.site-footer-copyright,
+.site-footer-credit { margin: 0; }
+.site-footer-credit {
+  color: var(--muted);
+  font-size: .85rem;
+  letter-spacing: .02em;
+}
+footer .site-footer-inner .legal-links { margin-top: 0; }
+
+@media (max-width: 700px) {
+  .site-footer-inner { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 600px) {
+  .cookie-consent { right: 16px; bottom: 24px; padding: 18px; }
+  .cookie-consent__actions .button { flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent,
+  .cookie-consent__privacy,
+  .cookie-consent__privacy::after { transition: none; }
+}
+
