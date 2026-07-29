@@ -722,6 +722,53 @@ h1 span {
 .document-request-status.is-success { color: var(--green); }
 .document-request-status.is-error { color: #ef6b73; }
 
+.document-request-confirmation {
+  width: min(92vw, 560px);
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  color: var(--text);
+  background: transparent;
+}
+
+.document-request-confirmation::backdrop {
+  background: rgba(10, 14, 20, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.document-request-confirmation-panel {
+  position: relative;
+  padding: 48px 34px 42px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--panel);
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.document-request-confirmation-icon {
+  display: grid;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 46px;
+  line-height: 1;
+}
+
+.document-request-confirmation-panel h2 {
+  margin: 0 0 14px;
+}
+
+.document-request-confirmation-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .document-request-actions {
   display: flex;
   justify-content: flex-end;

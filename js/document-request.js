@@ -6,9 +6,13 @@
   var dialog = document.getElementById("document-request-dialog");
   var form = document.getElementById("document-request-form");
   var status = document.getElementById("document-request-status");
+  var confirmation = document.getElementById("document-request-confirmation");
+  var confirmationMessage = document.getElementById(
+    "document-request-confirmation-message",
+  );
   var closeTimer = null;
 
-  if (!dialog || !form || !status) return;
+  if (!dialog || !form || !status || !confirmation || !confirmationMessage) return;
 
   var messages = {
     nl: {
@@ -16,8 +20,8 @@
       invalid: "Controleer de verplichte velden.",
       sending: "Aanvraag wordt veilig verzonden…",
       success:
-        "Je aanvraag is ontvangen. Na controle ontvang je de tijdelijke downloadlinks per e-mail.",
-      closes: "Dit venster sluit automatisch over {seconds} seconden.",
+        "Je aanvraag is succesvol verzonden en wacht op goedkeuring.",
+      closes: "Deze melding sluit automatisch over {seconds} seconden.",
       error:
         "De aanvraag kon niet worden verzonden. Probeer het later opnieuw.",
     },
@@ -26,8 +30,8 @@
       invalid: "Please check the required fields.",
       sending: "Your request is being sent securely…",
       success:
-        "Your request has been received. After verification, you will receive the temporary download links by email.",
-      closes: "This window will close automatically in {seconds} seconds.",
+        "Your request was sent successfully and is awaiting approval.",
+      closes: "This message will close automatically in {seconds} seconds.",
       error: "The request could not be sent. Please try again later.",
     },
     fr: {
@@ -35,9 +39,9 @@
       invalid: "Vérifiez les champs obligatoires.",
       sending: "Votre demande est envoyée de manière sécurisée…",
       success:
-        "Votre demande a été reçue. Après vérification, vous recevrez les liens de téléchargement temporaires par e-mail.",
+        "Votre demande a bien été envoyée et est en attente d’approbation.",
       closes:
-        "Cette fenêtre se fermera automatiquement dans {seconds} secondes.",
+        "Ce message se fermera automatiquement dans {seconds} secondes.",
       error:
         "La demande n’a pas pu être envoyée. Veuillez réessayer plus tard.",
     },
@@ -73,6 +77,37 @@
     );
   }
 
+  function closeConfirmation() {
+    clearCloseTimer();
+    if (typeof confirmation.close === "function") {
+      confirmation.close();
+    } else {
+      confirmation.removeAttribute("open");
+    }
+  }
+
+  function showConfirmation() {
+    var secondsRemaining = 10;
+    confirmationMessage.textContent = successMessage(secondsRemaining);
+
+    if (typeof confirmation.showModal === "function") {
+      confirmation.showModal();
+    } else {
+      confirmation.setAttribute("open", "");
+    }
+
+    closeTimer = window.setInterval(function () {
+      secondsRemaining -= 1;
+
+      if (secondsRemaining <= 0) {
+        closeConfirmation();
+        return;
+      }
+
+      confirmationMessage.textContent = successMessage(secondsRemaining);
+    }, 1000);
+  }
+
   function openDialog() {
     clearCloseTimer();
     setStatus("", "");
@@ -99,6 +134,16 @@
     .forEach(function (button) {
       button.addEventListener("click", openDialog);
     });
+
+  document
+    .querySelectorAll("[data-document-request-confirmation-close]")
+    .forEach(function (button) {
+      button.addEventListener("click", closeConfirmation);
+    });
+
+  confirmation.addEventListener("click", function (event) {
+    if (event.target === confirmation) closeConfirmation();
+  });
 
   document
     .querySelectorAll("[data-document-request-close]")
@@ -157,19 +202,9 @@
       if (!response.ok) throw new Error("Request failed");
 
       form.reset();
-      var secondsRemaining = 10;
-      setStatus(successMessage(secondsRemaining), "success");
-
-      closeTimer = window.setInterval(function () {
-        secondsRemaining -= 1;
-
-        if (secondsRemaining <= 0) {
-          closeDialog();
-          return;
-        }
-
-        setStatus(successMessage(secondsRemaining), "success");
-      }, 1000);
+      closeDialog();
+      setStatus("", "");
+      showConfirmation();
     } catch (error) {
       console.error("Document request failed:", error);
       setStatus(text("error"), "error");
