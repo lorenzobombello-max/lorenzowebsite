@@ -59,24 +59,13 @@ body {
   color: var(--paper);
   line-height: 1.6;
   overflow-x: hidden;
-
-  background-color: #f6f9fc;
-
+  background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(125, 177, 255, 0.18), transparent 55%),
-    radial-gradient(circle at 15% 20%, rgba(125, 177, 255, 0.08), transparent 40%),
-    radial-gradient(circle at 85% 25%, rgba(125, 177, 255, 0.08), transparent 40%),
-    linear-gradient(rgba(90,120,180,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90,120,180,0.045) 1px, transparent 1px);
-
-  background-size:
-    auto,
-    auto,
-    auto,
-    42px 42px,
-    42px 42px;
-
-  background-attachment: fixed;
+    linear-gradient(rgba(238, 241, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 241, 238, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 88% 6%, rgba(245, 166, 35, 0.09), transparent 32%),
+    radial-gradient(circle at 8% 24%, rgba(51, 209, 122, 0.06), transparent 28%);
+  background-size: 42px 42px, 42px 42px, auto, auto;
 }
 
 body,
