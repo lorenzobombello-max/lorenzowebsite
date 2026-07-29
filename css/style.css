@@ -60,15 +60,14 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 
-    /* Lichte modus */
     background-color: #f6f9fc;
 
     background-image:
-        radial-gradient(circle at 50% 0%, rgba(125,177,255,.22), transparent 58%),
-        radial-gradient(circle at 15% 20%, rgba(125,177,255,.10), transparent 42%),
-        radial-gradient(circle at 85% 25%, rgba(125,177,255,.10), transparent 42%),
-        linear-gradient(rgba(90,120,180,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(90,120,180,.045) 1px, transparent 1px);
+        radial-gradient(circle at 50% 0%, rgba(125, 177, 255, 0.22), transparent 58%),
+        radial-gradient(circle at 15% 20%, rgba(125, 177, 255, 0.10), transparent 42%),
+        radial-gradient(circle at 85% 25%, rgba(125, 177, 255, 0.10), transparent 42%),
+        linear-gradient(rgba(90, 120, 180, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 120, 180, 0.045) 1px, transparent 1px);
 
     background-size:
         auto,
@@ -78,6 +77,16 @@ body {
         42px 42px;
 
     background-attachment: fixed;
+}
+
+/* Donkere modus */
+html[data-theme="dark"] body,
+html.dark body,
+body.dark,
+[data-theme="dark"] body {
+    background-color: var(--bg);
+    background-image: none;
+    color: var(--paper);
 }
 
 body,
