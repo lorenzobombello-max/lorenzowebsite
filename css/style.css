@@ -63,7 +63,7 @@ body {
   background-color: #f6f9fc;
 
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(125, 177, 255, 0.26), transparent 55%),
+    radial-gradient(circle at 50% 0%, rgba(125, 177, 255, 0.18), transparent 55%),
     radial-gradient(circle at 15% 20%, rgba(125, 177, 255, 0.08), transparent 40%),
     radial-gradient(circle at 85% 25%, rgba(125, 177, 255, 0.08), transparent 40%),
     linear-gradient(rgba(90,120,180,0.045) 1px, transparent 1px),
