@@ -296,7 +296,7 @@
 
           if (contentType === "application/pdf") {
             const frame = document.createElement("iframe");
-            frame.src = objectUrl;
+            frame.src = `${objectUrl}#zoom=page-fit`;
             frame.title = filename;
             viewer.appendChild(frame);
           } else if (contentType.startsWith("image/")) {
