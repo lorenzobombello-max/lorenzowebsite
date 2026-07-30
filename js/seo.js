@@ -4,6 +4,9 @@
   var SITE_BASE = "https://lorenzobombello.be";
   var FALLBACK_IMAGE = SITE_BASE + "/images/og-image.jpg";
   var PAGE = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  var isViewer =
+    PAGE === "project-image-viewer.html" ||
+    PAGE === "document-viewer.html";
   var PAGE_DESCRIPTIONS_NL = {
     "index.html": "Lorenzo Bombello, onderhoudstechnieker in Gent met focus op Siemens PLC, TIA Portal en industriële automatisatie.",
     "motivatie.html": "Motivatie en groeitraject van Lorenzo Bombello als onderhoudstechnieker in Gent binnen Siemens PLC en TIA Portal automatisatie.",
@@ -32,6 +35,7 @@
     "automation-lab.html": "conveyor automation lab, PLC I/O demo",
     "robot-pick-place.html": "robot pick and place simulatie, industriële robotica",
     "pneumatics-lab.html": "PLC pneumatica, ventielsturing, cilinder demo",
+  };
   var DEFAULT_KEYWORDS = "onderhoudstechnieker Gent, Siemens PLC, TIA Portal, industrial automation, electrical maintenance";
   var currentLang = (document.documentElement.getAttribute("lang") || "nl").toLowerCase();
   var currentPage = PAGE || "index.html";
@@ -111,6 +115,7 @@
     return {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
+      "@id": canonicalUrl + "#breadcrumb",
       itemListElement: items.map(function (item, index) {
         return {
           "@type": "ListItem",
