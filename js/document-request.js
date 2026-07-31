@@ -2,7 +2,7 @@
   "use strict";
 
   var endpoint =
-    "https://nqkgnsxjdlkvrzlemdaz.supabase.co/functions/v1/super-processor";
+    "https://api.lorenzobombello.be/submit-document-request";
   var dialog = document.getElementById("document-request-dialog");
   var form = document.getElementById("document-request-form");
   var status = document.getElementById("document-request-status");

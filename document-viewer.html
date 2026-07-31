@@ -175,7 +175,7 @@
     (() => {
       "use strict";
 
-      const ENDPOINT = "https://nqkgnsxjdlkvrzlemdaz.supabase.co/functions/v1/download-document";
+      const ENDPOINT = "https://api.lorenzobombello.be/download-document";
       const query = new URLSearchParams(window.location.search);
       const language = ["nl", "fr", "en"].includes(query.get("lang")) ? query.get("lang") : "nl";
       const tokenParams = new URLSearchParams();
